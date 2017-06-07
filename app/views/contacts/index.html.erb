@@ -1,6 +1,10 @@
 <h1>Contacts</h1>
 
+<%= link_to 'New contact', new_contact_path %>
+
 <% @contacts.each do |contact| %>
     <%= contact.name %>
     <%= contact.email %>
+    <%= link_to 'Edit', edit_contact_path(contact) %>
+    <%= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: "Permanently delete contact?" } %>
 <% end %>

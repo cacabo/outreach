@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Outreach</title>
-    <%= csrf_meta_tags %>
+    <head>
+        <title>Outreach</title>
+        <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+        <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    </head>
 
-  <body>
-    <%= yield %>
-  </body>
+    <body>
+        <div class="container display-none" id="alerts">
+            <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, class: [:alert, alert_for(name)]%>
+            <% end %>
+        </div>
+        <div class="container">
+            <%= yield %>
+        </div>
+
+        <script>
+            $(document).ready(function() {
+                $('#alerts').slideDown(250).delay(1250).slideUp(250);
+            });
+        </script>
+    </body>
 </html>
