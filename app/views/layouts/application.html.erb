@@ -9,14 +9,22 @@
     </head>
 
     <body>
+        <%= render 'layouts/header' %>
+
+        <div class="space"></div>
+
         <div class="container display-none" id="alerts">
             <% flash.each do |name, msg| %>
                 <%= content_tag :div, msg, class: [:alert, alert_for(name)]%>
             <% end %>
         </div>
+
         <div class="container">
             <%= yield %>
         </div>
+
+
+        <%= render 'layouts/footer' %>
 
         <script>
             $(document).ready(function() {

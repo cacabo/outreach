@@ -1,20 +1,28 @@
 class ContactsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_contact, only: [:show, :edit, :update, :destroy]
+    before_action :ownded_contact, only: [:show, :edit, :update, :destroy]
 
     def index
-        @contacts = Contact.all
+        if (current_user)
+            @contacts = current_user.contacts
+        else
+            @contacts = []
+        end
     end
 
     def new
-        @contact = Contact.new
+        @contact = current_user.contacts.build
     end
 
     def create
-        if @contact = Contact.create(contact_params)
+        @contact = current_user.contacts.build(contact_params)
+
+        if @contact.save
             flash[:success] = "Contact successfully created."
             redirect_to contacts_path
         else
-            flash.now[:alert] = "Failed to add contac. Please check the form."
+            flash.now[:alert] = "Failed to add contact. Please check the form."
             render :new
         end
     end
@@ -49,5 +57,12 @@ class ContactsController < ApplicationController
 
     def set_contact
         @contact = Contact.find(params[:id])
+    end
+
+    def owned_contact
+        unless current_user == @contact.user
+            flash[:alert] = "Contact does not belong to you"
+            redirect_to root_path
+        end
     end
 end
