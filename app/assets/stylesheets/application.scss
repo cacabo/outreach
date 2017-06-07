@@ -200,3 +200,27 @@ input {
         border-color: $orange;
     }
 }
+
+.orange-text {
+    color: $orange !important;
+}
+
+.orange {
+    background: $orange;
+}
+
+.white-text {
+    color: white !important;
+}
+
+.white {
+    background: white;
+}
+
+.dark-orange {
+    color: $dark-orange;
+}
+
+.varela {
+    font-family: 'Varela Round', sans-serif;
+}
