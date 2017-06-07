@@ -13,10 +13,14 @@
 
         <div class="space"></div>
 
-        <div class="container display-none" id="alerts">
-            <% flash.each do |name, msg| %>
-                <%= content_tag :div, msg, class: [:alert, alert_for(name)]%>
-            <% end %>
+        <div class="container display-none no-pad no-marg" id="alerts">
+            <div class="row">
+                <div class="col-10 push-1 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                    <% flash.each do |name, msg| %>
+                        <%= content_tag :div, msg, class: [:alert, alert_for(name)]%>
+                    <% end %>
+                </div>
+            </div>
         </div>
 
         <div class="container">

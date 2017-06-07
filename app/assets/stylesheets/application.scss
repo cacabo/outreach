@@ -16,6 +16,9 @@
  */
  @import "bootstrap";
 
+ $orange: #ff6600;
+ $dark-orange: #cc5200;
+
  body {
      outline: 0 !important;
 
@@ -39,7 +42,7 @@
  }
 
  #alerts {
-     position: fixed;
+     position: absolute;
      top: 65px;
      left: 0px;
  }
@@ -157,4 +160,43 @@ button:link {
 
 .shade-hover:hover {
     box-shadow: 0px 0px 1.25vh rgba(0, 0, 0, 0.3);
+}
+
+#error-explanation {
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+}
+
+#alerts {
+    z-index: 2;
+}
+
+.no-pad {
+    padding: 0 !important;
+}
+
+.no-marg {
+    margin: 0 !important;
+}
+
+.turbolinks-progress-bar {
+    background: $orange;
+}
+
+a, a:link, a:visited {
+    color: $orange;
+
+    &:hover, &:active, &:focus {
+        color: $dark-orange;
+    }
+}
+
+input {
+    &:active, &:focus {
+        border-color: $orange;
+    }
 }
