@@ -1,0 +1,17 @@
+<h1><%= @contact.name %></h1>
+
+<% if @contact.reaches %>
+    <% @contact.reaches.each do |reach| %>
+        <div class="reach">
+            <%= reach.time %>
+            <%= reach.notes %>
+            <% if current_user %>
+                <%= link_to 'Delete outreach', contact_reach_path(@contact, reach), method: :delete  %>
+            <% end %>
+        </div>
+    <% end %>
+    <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
+        <%= f.datetime_select :time %>
+        <%= f.text_field :notes, placeholder: 'Add a comment...' %>
+    <% end %>
+<% end %>
