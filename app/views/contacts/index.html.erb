@@ -1,10 +1,32 @@
-<h1>Contacts</h1>
+<h2 class="inline">Contacts</h2>
 
-<%= link_to 'New contact', new_contact_path %>
+<%= link_to new_contact_path do %>
+    <button class="btn btn-outline-orange float-right">New contact</button>
+<% end %>
+
+<div class="space"></div>
 
 <% @contacts.each do |contact| %>
-    <%= contact.name %>
-    <%= contact.email %>
-    <%= link_to 'Edit', edit_contact_path(contact) %>
-    <%= link_to 'Delete', contact_path(contact), method: :delete, data: { confirm: "Permanently delete contact?" } %>
+    <div class="contact">
+        <%= link_to contact do %>
+            <h4><%= contact.name %></h4>
+        <% end %>
+
+        <% if contact.email and contact.email.length > 0 %>
+            <a href="mailto:<%=contact.email%>"><%= contact.email %></a>
+        <% end %>
+        <% if contact.cell and contact.cell.length > 0 %>
+            <p class="inline">Cell: </p><a href="tel:<%=contact.cell%>"><%= contact.cell %></a>
+        <% end %>
+        <% if contact.work and contact.work.length > 0 %>
+            <p class="inline">Work: </p><a href="tel:<%=contact.work%>"><%= contact.work %></a>
+        <% end %>
+        <p>
+            <strong>Outreaches:</strong> <%= contact.reaches.count %>,
+            <strong>Responses:</strong> 0
+        </p>
+        <p><strong>Company: </strong> <%= contact.company ? contact.company : '-' %><br>
+            <strong>Role: </strong> <%= contact.role ? contact.role : '-' %>
+        </p>
+    </div>
 <% end %>

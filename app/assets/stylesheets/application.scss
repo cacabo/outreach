@@ -24,6 +24,7 @@
 
      //Smooth transition styling for all links
      a {
+         -webkit-transition: all 0.2s ease;
          transition: all 0.2s ease;
      }
 
@@ -80,6 +81,7 @@
 }
 
 .animate {
+    -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
 
@@ -154,6 +156,7 @@ button:link {
 }
 
 .shade-hover {
+    -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
     box-shadow: 0px 0px 1.25vh rgba(0, 0, 0, 0.15);
 }
@@ -195,9 +198,9 @@ a, a:link, a:visited {
     }
 }
 
-input {
+input, textarea {
     &:active, &:focus {
-        border-color: $orange;
+        border-color: $orange !important;
     }
 }
 
@@ -207,6 +210,19 @@ input {
 
 .orange {
     background: $orange;
+}
+
+.btn-outline-orange {
+    border-color: $orange;
+    color: $orange;
+    background: transparent;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: $orange;
+        color: $white;
+    }
 }
 
 .white-text {
@@ -221,6 +237,20 @@ input {
     color: $dark-orange;
 }
 
+.dark-orange-hover {
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: $dark-orange;
+    }
+}
+
 .varela {
     font-family: 'Varela Round', sans-serif;
+}
+
+.contact {
+    padding: 2.5vh;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
 }
