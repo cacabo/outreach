@@ -1,0 +1,13 @@
+<%= bootstrap_form_for @contact do |f| %>
+    <%= f.text_field :name required%>
+    <%= f.email_field :email %>
+    <%= f.email_field :secondary_email %>
+    <%= f.telephone_field :cell %>
+    <%= f.telephone_field :work %>
+    <%= f.text_field :company %>
+    <%= f.text_field :role required%>
+    <%= f.url_field :linkedin %>
+    <%= f.url_field :facebook %>
+    <%= f.text_area :notes %>
+    <%= f.submit %>
+<% end %>
