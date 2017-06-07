@@ -11,23 +11,23 @@
         <ul class="navbar-nav">
             <% if current_user.nil? %>
                 <li class="nav-item">
-                    <%= link_to 'Sign In' new_user_session_path do %>
+                    <%= link_to 'Sign In', new_user_session_path, class: 'nav-link' %>
                 </li>
 
                 <li class="nav-item">
-                    <%= link_to 'Sign Up', new_user_registration_path %>
+                    <%= link_to 'Sign Up', new_user_registration_path, class: 'nav-link' %>
                 </li>
             <% else %>
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= contacts_path %>">Contacts</a>
+                    <%= link_to 'Contacts', contacts_path, class: 'nav-link' %>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= new_contact_path %>">New Contact</a>
+                    <%= link_to 'New Contact', new_contact_path, class: 'nav-link' %>
                 </li>
 
                 <li class="nav-item">
-                    <%= link_to 'Sign Out', destroy_user_session_path do %>
+                    <%= link_to 'Sign Out', destroy_user_session_path, class: 'nav-link' %>
                 </li>
             <% end %>
         </ul>
