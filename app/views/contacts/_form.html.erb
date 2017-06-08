@@ -2,12 +2,24 @@
     <%= f.text_field :name, required: true %>
     <%= f.email_field :email %>
     <%= f.email_field :secondary_email %>
-    <%= f.telephone_field :cell %>
-    <%= f.telephone_field :work %>
+    <div class="row">
+        <div class="col-6">
+            <%= f.telephone_field :cell %>
+        </div>
+        <div class="col-6">
+            <%= f.telephone_field :work %>
+        </div>
+    </div>
     <%= f.text_field :company %>
     <%= f.text_field :role, required: true %>
-    <%= f.url_field :linkedin %>
-    <%= f.url_field :facebook %>
-    <%= f.text_area :notes %>
-    <%= f.submit %>
+    <div class="row">
+        <div class="col-6">
+            <%= f.url_field :linkedin %>
+        </div>
+        <div class="col-6">
+            <%= f.url_field :facebook %>
+        </div>
+    </div>
+    <%= f.text_area :notes, rows: '8' %>
+    <%= f.submit 'Submit Contact', class: 'btn btn-outline-orange' %>
 <% end %>
