@@ -1,17 +1,94 @@
-<h1><%= @contact.name %></h1>
+<div class="row">
+    <div class="col-12">
+        <h1><%= @contact.name %></h1>
+        <p class="date">Contact created <%= @contact.created_at.to_date.to_formatted_s(:long_ordinal) %></p>
+        <p><%= @contact.role %> | <%= @contact.company %></p>
+        <% if @contact.email.present? %>
+            <p>
+                <a href="mailto:<%=@contact.email%>">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <%= @contact.email %>
+                </a>
+            </p>
+        <% end %>
+        <% if @contact.secondary_email.present? %>
+            <p>
+                <a href="mailto:<%=@contact.secondary_email%>">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <%= @contact.secondary_email %>
+                </a>
+            </p>
+        <% end %>
+        <% if @contact.cell.present? %>
+            <p>
+                Cell: <a href="tel:<%=@contact.cell%>">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <%= @contact.cell %>
+                </a>
+            </p>
+        <% end %>
+        <% if @contact.work.present? %>
+            <p>
+                Work: <a href="tel:<%=@contact.work%>">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <%= @contact.work %>
+                </a>
+            </p>
+        <% end %>
+        <p><%= @contact.work %></p>
+        <% if @contact.linkedin.present? %>
+            <p>
+                <a href="<%= @contact.linkedin %>" target="_blank">
+                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                </a>
+            </p>
+        <% end %>
+        <% if @contact.facebook.present? %>
+            <p>
+                <a href="<%= @contact.facebook %>" target="_blank">
+                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                </a>
+            </p>
+        <% end %>
+        <p><%= @contact.notes %></p>
+    </div>
+</div>
 
-<% if @contact.reaches %>
-    <% @contact.reaches.each do |reach| %>
-        <div class="reach">
-            <%= reach.time %>
-            <%= reach.notes %>
-            <% if current_user %>
-                <%= link_to 'Delete outreach', contact_reach_path(@contact, reach), method: :delete  %>
+
+<div class="row">
+    <div class="col-12">
+        <% if @contact.reaches %>
+            <h3>Listing outreaches</h3>
+            <div class="line"></div>
+            <% reaches = @contact.reaches.sort_by &:time %>
+            <% reaches.each do |reach| %>
+                <div class="reach">
+                    <p class="date">
+                        <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
+                    </p>
+                    <p class="notes">
+                        <%= reach.notes %>
+                    </p>
+                    <% if current_user %>
+                        <%= link_to contact_reach_path(@contact, reach), method: :delete do %>
+                            <i class="fa fa-times-circle float-right delete" aria-hidden="true"></i>
+                        <% end %>
+                    <% end %>
+                </div>
             <% end %>
-        </div>
-    <% end %>
-    <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
-        <%= f.datetime_select :time %>
-        <%= f.text_field :notes, placeholder: 'Add a comment...' %>
-    <% end %>
-<% end %>
+        <% end %>
+    </div>
+</div>
+<div class="space"></div>
+<div class="row">
+    <div class="col-12 col-lg-6">
+        <h3>Add new outreach</h3>
+        <div class="line"></div>
+        <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
+            <%= f.date_select :time %>
+            <%= f.check_box :response, label: 'Is this a response' %>
+            <%= f.text_field :notes, placeholder: 'Add a comment...' %>
+            <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+        <% end %>
+    </div>
+</div>

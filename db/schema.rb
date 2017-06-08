@@ -31,7 +31,8 @@ ActiveRecord::Schema.define(version: 20170607194111) do
 
   create_table "reaches", force: :cascade do |t|
     t.integer "contact_id"
-    t.datetime "time"
+    t.boolean "response"
+    t.date "time"
     t.text "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

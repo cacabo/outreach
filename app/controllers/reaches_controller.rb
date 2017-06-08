@@ -4,9 +4,9 @@ class ReachesController < ApplicationController
     def create
         @reach = @contact.reaches.build(reach_params)
 
-        if @comment.save
+        if @reach.save
             flash[:success] = "Reach added successfully."
-            redirect_to :back
+            redirect_to @contact
         else
             flash[:alert] = "Reach addition failed. Check the outreach form."
             render root_path
@@ -14,7 +14,7 @@ class ReachesController < ApplicationController
     end
 
     def destroy
-        @reach = @contact.comments.find(params[:id])
+        @reach = @contact.reaches.find(params[:id])
 
         @reach.destroy
         flash[:success] = "Outreach deleted"
@@ -23,11 +23,11 @@ class ReachesController < ApplicationController
 
     private
 
-    def comment_params
+    def reach_params
         params.require(:reach).permit(:time, :notes)
     end
 
-    def set_post
+    def set_contact
         @contact = Contact.find(params[:contact_id])
     end
 end

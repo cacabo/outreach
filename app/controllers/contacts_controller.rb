@@ -1,7 +1,7 @@
 class ContactsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_contact, only: [:show, :edit, :update, :destroy]
-    before_action :ownded_contact, only: [:show, :edit, :update, :destroy]
+    before_action :owned_contact, only: [:show, :edit, :update, :destroy]
 
     def index
         if (current_user)
