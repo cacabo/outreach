@@ -4,4 +4,6 @@ Rails.application.routes.draw do
         resources :reaches
     end
     root 'welcome#index'
+
+    get 'contacts/long_term', to: 'contacts#index', as: 'long_term'
 end

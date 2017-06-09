@@ -19,10 +19,12 @@ ActiveRecord::Schema.define(version: 20170607194111) do
     t.string "cell"
     t.string "work"
     t.string "company"
+    t.string "company_details"
     t.string "role"
     t.string "linkedin"
     t.string "facebook"
     t.string "notes"
+    t.boolean "long_term"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"

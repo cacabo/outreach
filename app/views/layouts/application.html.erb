@@ -13,8 +13,6 @@
     <body>
         <%= render 'layouts/header' %>
 
-        <div class="space"></div>
-
         <div class="container display-none no-pad no-marg" id="alerts">
             <div class="row">
                 <div class="col-10 push-1 col-md-8 push-md-2 col-lg-6 push-lg-3">
@@ -25,9 +23,8 @@
             </div>
         </div>
 
-        <div class="container">
-            <%= yield %>
-        </div>
+
+        <%= yield %>
 
 
         <%= render 'layouts/footer' %>

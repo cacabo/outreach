@@ -15,9 +15,9 @@
  *= require_self
  */
 @import "bootstrap";
-$orange: #ff6600;
-$dark-orange: #cc5200;
-$light-orange: #ffa366;
+$orange: #ff6600; //rgb(255,102,0)
+$dark-orange: #cc5200; //rgb(204,82,0)
+$light-orange: #ffa366; //rgb(255,163,102)
 $gray: #404040;
 
 body {
@@ -35,7 +35,6 @@ body {
         text-decoration: none;
         outline: 0 !important;
     }
-
     font-size: 120%;
 }
 
@@ -102,6 +101,10 @@ button:active,
 button:link,
 button:visited {
     outline: 0 !important;
+}
+
+.h-40 {
+    height: 40vh;
 }
 
 .inline {
@@ -177,12 +180,28 @@ button:visited {
     color: #a94442;
 }
 
+.pad-all {
+    padding: 2.5vh;
+}
+
+.pad-all-50 {
+    padding: 5vh;
+}
+
 .no-pad {
     padding: 0 !important;
 }
 
 .no-marg {
     margin: 0 !important;
+}
+
+.marg-top-25 {
+    margin-top: 2.5vh !important;
+}
+
+.marg-top-50 {
+    margin-top: 5vh !important;
 }
 
 .turbolinks-progress-bar {
@@ -239,6 +258,10 @@ textarea {
     background: white;
 }
 
+.gray {
+    background: whitesmoke;
+}
+
 .dark-orange {
     color: $dark-orange;
 }
@@ -250,6 +273,14 @@ textarea {
     &:hover {
         background: $dark-orange;
     }
+}
+
+.orange-gradient {
+    background: rgba(255, 102, 0, 0.5);
+    background: -webkit-linear-gradient(left top, rgba(255, 102, 0, 0.5), rgba(204, 82, 0, 0.5));
+    background: -o-linear-gradient(bottom right, rgba(255, 102, 0, 0.5), rgba(204, 82, 0, 0.5));
+    background: -moz-linear-gradient(bottom right, rgba(255, 102, 0, 0.5), rgba(204, 82, 0, 0.5));
+    background: linear-gradient(to bottom right, rgba(255, 102, 0, 0.5), rgba(230, 90, 0, 0.5));
 }
 
 .varela {
@@ -280,7 +311,8 @@ p.date {
     border-top: 1px solid rgba(0, 0, 0, 0.15);
     background: rgba(0, 0, 0, 0.075);
 
-    .date, .notes {
+    .date,
+    .notes {
         margin: 0;
         padding: 1rem 2rem;
         display: inline-block;
@@ -309,4 +341,41 @@ p.date {
     font-size: 83.3333%;
     color: gray;
     text-align: center;
+
+    a {
+        color: gray;
+        font-weight: bold;
+
+        &:hover {
+            color: $gray;
+        }
+    }
+}
+
+.bg {
+    width: 100%;
+    height: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.office {
+    background-image: image-url('office.jpg');
+}
+
+.curve {
+    border-radius: 0 0 100% 100%;
+    width: 100%;
+}
+
+.curve-absolute {
+    position: absolute;
+    left: 0;
+    top: inherit;
+}
+
+.card.card-rect {
+    border-radius: 0px;
+    border: 0px transparent;
 }

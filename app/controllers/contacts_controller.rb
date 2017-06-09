@@ -4,7 +4,9 @@ class ContactsController < ApplicationController
     before_action :owned_contact, only: [:show, :edit, :update, :destroy]
 
     def index
-        if (current_user)
+        if (current_user and params[:long_term])
+            @contacts = current_user.contacts.where(:long_term)
+        elsif (current_user)
             @contacts = current_user.contacts
         else
             @contacts = []

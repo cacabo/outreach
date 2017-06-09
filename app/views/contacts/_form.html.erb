@@ -11,6 +11,7 @@
         </div>
     </div>
     <%= f.text_field :company %>
+    <%= f.text_field :company_details %>
     <%= f.text_field :role, required: true %>
     <div class="row">
         <div class="col-6">
@@ -20,6 +21,7 @@
             <%= f.url_field :facebook %>
         </div>
     </div>
+    <%= f.check_box :long_term %>
     <%= f.text_area :notes, rows: '8' %>
     <%= f.submit 'Submit Contact', class: 'btn btn-outline-orange' %>
 <% end %>
