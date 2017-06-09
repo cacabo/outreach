@@ -71,10 +71,18 @@
     <div class="space"></div>
     <div class="space"></div>
     <div class="buttons">
-        <%= link_to new_user_registration_path do %>
-            <button class="btn btn-outline-orange">
-                Register today
-            </button>
+        <% if current_user %>
+            <%= link_to contacts_path do %>
+                <button class="btn btn-outline-orange">
+                    View your contacts
+                </button>
+            <% end %>
+        <% else %>
+            <%= link_to new_user_registration_path do %>
+                <button class="btn btn-outline-orange">
+                    Register today
+                </button>
+            <% end %>
         <% end %>
     </div>
     <div class="space"></div>
