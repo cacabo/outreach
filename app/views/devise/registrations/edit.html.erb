@@ -1,3 +1,5 @@
+<div class="space"></div>
+<div class="space"></div>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
@@ -8,7 +10,6 @@
             <%= devise_error_messages! %>
 
             <div class="field">
-                <%= f.label :email %><br/>
                 <%= f.email_field :email, autofocus: true %>
             </div>
 
@@ -18,7 +19,6 @@
             <% end %>
 
             <div class="field">
-                <%= f.label :password %>
                 <i>(leave blank if you don't want to change it)</i><br/>
                 <%= f.password_field :password, autocomplete: "off" %>
                 <% if @minimum_password_length %>
@@ -29,14 +29,13 @@
             </div>
 
             <div class="field">
-                <%= f.label :password_confirmation %><br/>
                 <%= f.password_field :password_confirmation, autocomplete: "off" %>
             </div>
 
             <div class="field">
                 <%= f.label :current_password %>
                 <i>(we need your current password to confirm your changes)</i><br/>
-                <%= f.password_field :current_password, autocomplete: "off" %>
+                <%= f.password_field :current_password, autocomplete: "off", hide_label: true %>
             </div>
 
             <div class="actions">
@@ -53,3 +52,5 @@
         </div>
     </div>
 </div>
+<div class="space"></div>
+<div class="space"></div>

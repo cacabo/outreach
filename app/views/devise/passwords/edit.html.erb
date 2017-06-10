@@ -1,3 +1,5 @@
+<div class="space"></div>
+<div class="space"></div>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
@@ -8,17 +10,15 @@
             <%= f.hidden_field :reset_password_token %>
 
             <div class="field">
-                <%= f.label :password, "New password" %><br/>
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %>
                     characters minimum)</em><br/>
                 <% end %>
-                <%= f.password_field :password, autofocus: true, autocomplete: "off" %>
+                <%= f.password_field :password, autofocus: true, label: "New password", autocomplete: "off" %>
             </div>
 
             <div class="field">
-                <%= f.label :password_confirmation, "Confirm new password" %><br/>
-                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", label: "Confirm new password" %>
             </div>
 
             <div class="actions">
@@ -30,3 +30,5 @@
         </div>
     </div>
 </div>
+<div class="space"></div>
+<div class="space"></div>

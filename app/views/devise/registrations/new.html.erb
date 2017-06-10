@@ -1,3 +1,5 @@
+<div class="space"></div>
+<div class="space"></div>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
@@ -7,12 +9,10 @@
             <%= devise_error_messages! %>
 
             <div class="field">
-                <%= f.label :email %><br/>
                 <%= f.email_field :email, autofocus: true %>
             </div>
 
             <div class="field">
-                <%= f.label :password %>
                 <% if @minimum_password_length %>
                 <em>(<%= @minimum_password_length %>
                     characters minimum)</em>
@@ -21,7 +21,6 @@
             </div>
 
             <div class="field">
-                <%= f.label :password_confirmation %><br/>
                 <%= f.password_field :password_confirmation, autocomplete: "off" %>
             </div>
 
@@ -33,3 +32,5 @@
             <%= render "devise/shared/links" %></div>
     </div>
 </div>
+<div class="space"></div>
+<div class="space"></div>

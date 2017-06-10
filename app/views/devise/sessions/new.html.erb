@@ -1,3 +1,5 @@
+<div class="space"></div>
+<div class="space"></div>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
@@ -5,19 +7,16 @@
 
             <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="field">
-                <%= f.label :email %><br/>
                 <%= f.email_field :email, autofocus: true %>
             </div>
 
             <div class="field">
-                <%= f.label :password %><br/>
                 <%= f.password_field :password, autocomplete: "off" %>
             </div>
 
             <% if devise_mapping.rememberable? -%>
             <div class="field">
                 <%= f.check_box :remember_me %>
-                <%= f.label :remember_me %>
             </div>
             <% end -%>
 
@@ -30,3 +29,5 @@
         </div>
     </div>
 </div>
+<div class="space"></div>
+<div class="space"></div>
