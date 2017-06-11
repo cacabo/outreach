@@ -1,36 +1,85 @@
-<%= bootstrap_form_for @contact do |f| %>
+<div class="form-wrapper">
+    <%= bootstrap_form_for @contact do |f| %>
 
-    <div id="general-information">
-        <%= f.text_field :name, required: true %>
-        <%= f.text_field :company, required: true %>
-        <%= f.text_field :company_details %>
-        <%= f.text_field :role, required: true %>
-        <%= f.check_box :long_term %>
-    </div>
+        <div id="general-information">
+            <%= f.text_field :name %>
+            <%= f.text_field :company %>
+            <%= f.text_field :company_details %>
+            <%= f.text_field :role %>
+            <%= f.check_box :long_term %>
 
-    <div id="contact-information">
-        <%= f.email_field :email %>
-        <%= f.email_field :secondary_email %>
-        <div class="row">
-            <div class="col-6">
-                <%= f.telephone_field :cell %>
-            </div>
-            <div class="col-6">
-                <%= f.telephone_field :work %>
+            <div class="buttons">
+                <button class="btn btn-outline-orange" id="next1">
+                    Next
+                </button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-6">
-                <%= f.url_field :linkedin %>
+
+        <div id="contact-information" class="display-none">
+            <%= f.email_field :email %>
+            <%= f.email_field :secondary_email %>
+            <div class="row">
+                <div class="col-6">
+                    <%= f.telephone_field :cell %>
+                </div>
+                <div class="col-6">
+                    <%= f.telephone_field :work %>
+                </div>
             </div>
-            <div class="col-6">
-                <%= f.url_field :facebook %>
+            <div class="row">
+                <div class="col-6">
+                    <%= f.url_field :linkedin %>
+                </div>
+                <div class="col-6">
+                    <%= f.url_field :facebook %>
+                </div>
+            </div>
+
+            <div class="buttons">
+                <button class="btn btn-outline-orange" id="back2">
+                    Back
+                </button>
+                <button class="btn btn-outline-orange" id="next2">
+                    Next
+                </button>
             </div>
         </div>
-    </div>
 
-    <div id="notes">
-        <%= f.text_area :notes, rows: '8' %>
-        <%= f.submit 'Submit Contact', class: 'btn btn-outline-orange' %>
-    </div>
-<% end %>
+        <div id="notes" class="display-none">
+            <%= f.text_area :notes, rows: '8' %>
+
+            <div class="buttons">
+                <button class="btn btn-outline-orange" id="back3">
+                    Back
+                </button>
+                <%= f.submit 'Submit Contact', class: 'btn btn-outline-orange' %>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+<script>
+    $('#next1').click(function(e) {
+        e.preventDefault();
+        $('#general-information').fadeOut(400);
+        $('#contact-information').delay(400).fadeIn(400);
+    });
+
+    $('#next2').click(function(e) {
+        e.preventDefault();
+        $('#contact-information').fadeOut(400);
+        $('#notes').delay(400).fadeIn(400);
+    });
+
+    $('#back2').click(function(e) {
+        e.preventDefault();
+        $('#contact-information').fadeOut(400);
+        $('#general-information').delay(400).fadeIn(400);
+    });
+
+    $('#back3').click(function(e) {
+        e.preventDefault();
+        $('#notes').fadeOut(400);
+        $('#contact-information').delay(400).fadeIn(400);
+    });
+</script>

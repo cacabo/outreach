@@ -412,3 +412,20 @@ p.date {
         transform: scale(1.05, 1.05);
     }
 }
+
+.form-wrapper {
+    min-height: 90vh;
+}
+
+.help-block {
+    display: inline-block;
+    position: relative;
+    color: #a94442;
+    background: #f2dede;
+    border: 2px solid #ebcccc;
+    color: #a94442;
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+    margin-top: 0.5rem !important;
+    margin-bottom: 1rem !important;
+}
