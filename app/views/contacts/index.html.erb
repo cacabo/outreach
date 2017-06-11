@@ -5,29 +5,39 @@
 
     <div class="contacts">
         <% @contacts.each do |contact| %>
-            <div class="contact">
-                <%= link_to contact do %>
-                    <h4><%= contact.name %></h4>
-                <% end %>
+        <div class="contact">
+            <%= link_to contact do %>
+            <h4><%= contact.name %></h4>
+            <% end %>
 
-                <% if contact.email and contact.email.length > 0 %>
-                    <a href="mailto:<%=contact.email%>"><%= contact.email %></a>
-                <% end %>
-                <% if contact.cell and contact.cell.length > 0 %>
-                    <p class="inline">Cell: </p><a href="tel:<%=contact.cell%>"><%= contact.cell %></a>
-                <% end %>
-                <% if contact.work and contact.work.length > 0 %>
-                    <p class="inline">Work: </p><a href="tel:<%=contact.work%>"><%= contact.work %></a>
-                <% end %>
-                <p>
-                    <strong>Outreaches:</strong> <%= contact.reaches.count %>,
-                    <strong>Responses:</strong> 0
-                </p>
-                <p>
-                    <strong>Company: </strong> <%= contact.company ? contact.company : '-' %><br>
-                    <strong>Role: </strong> <%= contact.role ? contact.role : '-' %>
-                </p>
-            </div>
+            <% if contact.email and contact.email.length > 0 %>
+            <a href="mailto:<%=contact.email%>"><%= contact.email %></a>
+            <% end %>
+            <% if contact.cell and contact.cell.length > 0 %>
+            <p class="inline">Cell:
+            </p>
+            <a href="tel:<%=contact.cell%>"><%= contact.cell %></a>
+            <% end %>
+            <% if contact.work and contact.work.length > 0 %>
+            <p class="inline">Work:
+            </p>
+            <a href="tel:<%=contact.work%>"><%= contact.work %></a>
+            <% end %>
+            <p>
+                <strong>Outreaches:</strong>
+                <%= contact.reaches.count %>,
+                <strong>Responses:</strong>
+                0
+            </p>
+            <p>
+                <strong>Company:
+                </strong>
+                <%= contact.company ? contact.company : '-' %><br>
+                <strong>Role:
+                </strong>
+                <%= contact.role ? contact.role : '-' %>
+            </p>
+        </div>
         <% end %>
     </div>
 </div>
@@ -35,6 +45,12 @@
 <div class="space"></div>
 <div class="space"></div>
 
-<a href="<%=new_contact_path%>" class="bottom-right">
+<a href="<%=new_contact_path%>" class="bottom-right" data-toggle="tooltip" data-placement="left" title="Add a new contact">
     <i class="fa fa-fw fa-plus-circle orange-text" aria-hidden="true"></i>
 </a>
+
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

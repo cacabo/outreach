@@ -67,37 +67,31 @@
 
     <div class="row">
         <div class="col-12">
-            <% if @contact.reaches %>
-            <h3 class="marg-bot-25">History</h3>
+            <% if @contact.reaches.present? %>
+                <h3 class="marg-bot-25">History</h3>
 
-            <% reaches = @contact.reaches.sort_by &:time %>
-            <% reaches.each do |reach| %>
-            <% if reach.response %>
-                <div class="reach response">
-            <% else %>
-                <div class="reach">
-            <% end %>
-                <p class="date">
-                    <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
-                </p>
-                <p class="notes">
-                    <%= reach.notes %>
-                </p>
-                <% if current_user %>
-                <%= link_to contact_reach_path(@contact, reach), method: :delete do %>
-                <i class="fa fa-times-circle float-right delete" aria-hidden="true"></i>
+                <% reaches = @contact.reaches.sort_by &:time %>
+                <% reaches.each do |reach| %>
+                    <% if reach.response %>
+                        <div class="reach response">
+                    <% else %>
+                        <div class="reach">
+                    <% end %>
+                        <p class="date">
+                            <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
+                        </p>
+                        <p class="notes">
+                            <%= reach.notes %>
+                        </p>
+                        <% if current_user %>
+                            <%= link_to contact_reach_path(@contact, reach), method: :delete do %>
+                                <i class="fa fa-times-circle float-right delete" aria-hidden="true"></i>
+                            <% end %>
+                        <% end %>
+                    </div>
                 <% end %>
-                <% end %>
-            </div>
-            <% end %>
             <% end %>
         </div>
-    </div>
-    <div class="space"></div>
-    <div class="row">
-        <button type="button" class="btn btn-outline-orange" data-toggle="modal" data-target="#reachForm">
-            Add new outreach
-        </button>
     </div>
 </div>
 <div class="space"></div>
@@ -126,3 +120,13 @@
     </div>
   </div>
 </div>
+
+<div class="bottom-right cursor" data-toggle="tooltip" data-placement="left" title="Add a new contact">
+        <i class="fa fa-fw fa-plus-circle orange-text" data-toggle="modal" data-target="#reachForm" aria-hidden="true"></i>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>

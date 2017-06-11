@@ -23,7 +23,7 @@ $gray: #404040;
 body {
     outline: 0 !important;
 
-    button:focus {
+    button, button:active, button:focus {
         outline: 0 !important;
     }
 
@@ -129,7 +129,7 @@ button:visited {
     background-position: center;
 }
 
-.btn {
+.btn, .cursor {
     cursor: pointer;
     cursor: hand;
 }
@@ -269,7 +269,11 @@ textarea {
 }
 
 .gray {
-    background: whitesmoke;
+    background: rgba(0, 0, 0, 0.075);
+}
+
+.light-gray {
+    background: rgba(0, 0, 0, 0.0325);
 }
 
 .dark-orange {
@@ -351,7 +355,7 @@ p.date {
 
 #foot {
     border-top: 1px solid rgba(0, 0, 0, 0.15);
-    background: whitesmoke;
+    background: rgba(0, 0, 0, 0.075);
     font-size: 83.3333%;
     color: gray;
     text-align: center;
