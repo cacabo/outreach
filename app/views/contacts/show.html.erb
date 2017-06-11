@@ -72,7 +72,11 @@
             <div class="line"></div>
             <% reaches = @contact.reaches.sort_by &:time %>
             <% reaches.each do |reach| %>
-            <div class="reach">
+            <% if reach.response %>
+                <div class="reach response">
+            <% else %>
+                <div class="reach">
+            <% end %>
                 <p class="date">
                     <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
                 </p>
@@ -95,9 +99,11 @@
             <h3>Add new outreach</h3>
             <div class="line"></div>
             <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
-            <%= f.date_select :time %>
-            <%= f.check_box :response, label: 'Is this a response' %>
-            <%= f.text_field :notes, placeholder: 'Add a comment...' %>
+            <%= f.date_select :time, hide_label: true %>
+            <%= f.form_group :response do %>
+                <%= f.check_box :response %>
+            <% end %>
+            <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
             <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
             <% end %>
         </div>

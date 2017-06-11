@@ -24,7 +24,7 @@ class ReachesController < ApplicationController
     private
 
     def reach_params
-        params.require(:reach).permit(:time, :notes)
+        params.require(:reach).permit(:time, :notes, :response)
     end
 
     def set_contact

@@ -312,6 +312,10 @@ p.date {
     border-top: 1px solid rgba(0, 0, 0, 0.15);
     background: rgba(0, 0, 0, 0.075);
 
+    &.response {
+        background: rgba(0, 255, 0, 0.075);
+    }
+
     .date,
     .notes {
         margin: 0;
