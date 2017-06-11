@@ -68,8 +68,8 @@
     <div class="row">
         <div class="col-12">
             <% if @contact.reaches %>
-            <h3>Listing outreaches</h3>
-            <div class="line"></div>
+            <h3 class="marg-bot-25">History</h3>
+
             <% reaches = @contact.reaches.sort_by &:time %>
             <% reaches.each do |reach| %>
             <% if reach.response %>
@@ -95,19 +95,34 @@
     </div>
     <div class="space"></div>
     <div class="row">
-        <div class="col-12 col-lg-6">
-            <h3>Add new outreach</h3>
-            <div class="line"></div>
-            <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
-            <%= f.date_select :time, hide_label: true %>
-            <%= f.form_group :response do %>
-                <%= f.check_box :response %>
-            <% end %>
-            <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
-            <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
-            <% end %>
-        </div>
+        <button type="button" class="btn btn-outline-orange" data-toggle="modal" data-target="#reachForm">
+            Add new outreach
+        </button>
     </div>
 </div>
 <div class="space"></div>
 <div class="space"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="reachForm" tabindex="-1" role="dialog" aria-labelledby="New reach form" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add new outreach</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
+          <%= f.date_select :time, label: "Date" %>
+          <%= f.form_group :response do %>
+              <%= f.check_box :response %>
+          <% end %>
+          <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
+          <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
