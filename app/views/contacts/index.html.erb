@@ -3,11 +3,11 @@
 <div class="container">
     <h2 class="inline">Contacts</h2>
 
-    <div class="contacts">
+    <ul class="list-group">
         <% @contacts.each do |contact| %>
-        <div class="contact">
+        <li class="list-group-item list-group-item-action contact">
             <%= link_to contact do %>
-            <h4><%= contact.name %></h4>
+                <h4><%= contact.name %></h4>
             <% end %>
 
             <% if contact.email and contact.email.length > 0 %>
@@ -37,10 +37,13 @@
                 </strong>
                 <%= contact.role ? contact.role : '-' %>
             </p>
-        </div>
+        </li>
+        <!-- closing list item -->
         <% end %>
-    </div>
+    </ul>
+    <!-- closing list group -->
 </div>
+<!-- closing container -->
 
 <div class="space"></div>
 <div class="space"></div>
