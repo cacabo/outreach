@@ -214,6 +214,10 @@ button:visited {
     margin-bottom: 2.5vh !important;
 }
 
+.marg-bot-0 {
+    margin-bottom: 0vh !important;
+}
+
 .turbolinks-progress-bar {
     background: $orange;
 }
@@ -373,6 +377,14 @@ p.date {
     background-position: center;
 }
 
+.block {
+    display: block;
+}
+
+.full-width {
+    width: 100%;
+}
+
 .office {
     background-image: image-url('office.jpg');
 }
@@ -423,4 +435,52 @@ p.date {
     padding: 0.25rem;
     margin-top: 0.5rem !important;
     margin-bottom: 1rem !important;
+}
+
+.contact-list {
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+}
+.contact {
+    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    padding: 1rem;
+    width: 100%;
+    display: block;
+    margin: 0;
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.075);
+    }
+}
+
+ul.icons {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        display: inline-block;
+        padding-right: 0.5rem;
+    }
+
+    &.right {
+        padding-right: 1rem;
+        text-align: right;
+
+        li {
+            padding-left: 0.5rem;
+            padding-right: 0;
+        }
+    }
+}
+
+.absolute-right {
+    right: 0;
+}
+
+.badge.badge-default {
+    background: rgba(0, 0, 0, 0.3);
+
+    &:hover {
+        background: rgba(0, 0, 0, 0.5);
+    }
 }

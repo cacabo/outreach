@@ -1,47 +1,84 @@
 <div class="space"></div>
 
 <div class="container">
-    <h2 class="inline">Contacts</h2>
+    <h2>Overview</h2>
+    <% outreach_count = 0 %>
+    <% response_count = 0 %>
+    <% @contacts.each do |contact| %>
+        <% outreach_count += contact.reaches.where(response: false).count %>
+        <% response_count += contact.reaches.where(response: true).count %>
+    <% end %>
+    <p>
+        Outreaches: <%= outreach_count %> | Responses: <%= response_count %>
+    </p>
+    <h2>Contacts</h2>
+    <div class="half-space"></div>
 
-    <ul class="list-group">
+    <div class="contact-list">
         <% @contacts.each do |contact| %>
-        <li class="list-group-item list-group-item-action contact">
-            <%= link_to contact do %>
-                <h4><%= contact.name %></h4>
-            <% end %>
+        <div class="contact">
+            <!-- header -->
+            <div class="row">
+                <div class="col-12">
+                    <!-- contact information -->
+                    <ul class="icons absolute absolute-right right">
+                        <% if contact.email.present? %>
+                            <li>
+                                <a href="mailto:<%=contact.email%>">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        <% end %>
+                        <% if contact.cell.present? %>
+                            <li>
+                                <a href="tel:<%=contact.cell%>">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        <% end %>
+                        <% if contact.facebook.present? %>
+                            <li>
+                                <a href="<%=contact.facebook%>" target="_blank">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        <% end %>
+                        <% if contact.linkedin.present? %>
+                            <li>
+                                <a href="<%=contact.linkedin%>" target="_blank">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                </a>
+                            </li>
+                        <% end %>
 
-            <% if contact.email and contact.email.length > 0 %>
-            <a href="mailto:<%=contact.email%>"><%= contact.email %></a>
-            <% end %>
-            <% if contact.cell and contact.cell.length > 0 %>
-            <p class="inline">Cell:
+                        <li>
+                            <span class="badge badge-default" data-toggle="tooltip" data-placement="top" title="Outreaches">
+                                <i class="fa fa-share"></i> <%= contact.reaches.where(response: false).count %>
+                            </span>
+                            <span class="badge badge-default" data-toggle="tooltip" data-placement="top" title="Responses">
+                                <i class="fa fa-reply"></i> <%= contact.reaches.where(response: true).count %>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <!-- name -->
+                    <%= link_to contact do %>
+                        <h4 class="inline"><%= contact.name %></h4>
+                    <% end %>
+                </div>
+            </div>
+            <p class="marg-bot-0">
+                <%= contact.company %>
+                <% if contact.company.present? and contact.role.present? %>
+                    |
+                <% end %>
+                <%= contact.role %>
             </p>
-            <a href="tel:<%=contact.cell%>"><%= contact.cell %></a>
-            <% end %>
-            <% if contact.work and contact.work.length > 0 %>
-            <p class="inline">Work:
-            </p>
-            <a href="tel:<%=contact.work%>"><%= contact.work %></a>
-            <% end %>
-            <p>
-                <strong>Outreaches:</strong>
-                <%= contact.reaches.count %>,
-                <strong>Responses:</strong>
-                0
-            </p>
-            <p>
-                <strong>Company:
-                </strong>
-                <%= contact.company ? contact.company : '-' %><br>
-                <strong>Role:
-                </strong>
-                <%= contact.role ? contact.role : '-' %>
-            </p>
-        </li>
-        <!-- closing list item -->
+        </div>
+        <!-- closing contact -->
         <% end %>
-    </ul>
-    <!-- closing list group -->
+    </div>
+    <!-- closing contact list -->
 </div>
 <!-- closing container -->
 
