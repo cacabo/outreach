@@ -8,9 +8,11 @@
         <% outreach_count += contact.reaches.where(response: false).count %>
         <% response_count += contact.reaches.where(response: true).count %>
     <% end %>
-    <p>
-        Outreaches: <%= outreach_count %> | Responses: <%= response_count %>
-    </p>
+    <h4>
+        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Contacts"><i class="fa fa-user"></i> <%= @contacts.count %></span>
+        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches"><i class="fa fa-share"></i> <%= outreach_count %></span>
+        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses"><i class="fa fa-reply"></i> <%= response_count %></span>
+    </h4>
     <h2>Contacts</h2>
     <div class="half-space"></div>
 
@@ -52,10 +54,10 @@
                         <% end %>
 
                         <li>
-                            <span class="badge badge-default" data-toggle="tooltip" data-placement="top" title="Outreaches">
+                            <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches">
                                 <i class="fa fa-share"></i> <%= contact.reaches.where(response: false).count %>
                             </span>
-                            <span class="badge badge-default" data-toggle="tooltip" data-placement="top" title="Responses">
+                            <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses">
                                 <i class="fa fa-reply"></i> <%= contact.reaches.where(response: true).count %>
                             </span>
                         </li>
@@ -82,6 +84,15 @@
 </div>
 <!-- closing container -->
 
+<div class="space"></div>
+<div class="space"></div>
+<div class="buttons">
+    <%= link_to new_contact_path do %>
+        <button class="btn btn-outline-orange">
+            Add a new contact
+        </button>
+    <% end %>
+</div>
 <div class="space"></div>
 <div class="space"></div>
 
