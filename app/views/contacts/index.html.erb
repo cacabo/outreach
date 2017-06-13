@@ -1,18 +1,29 @@
 <div class="space"></div>
 
 <div class="container">
+
+    <!-- overview -->
     <h2>Overview</h2>
-    <% outreach_count = 0 %>
-    <% response_count = 0 %>
-    <% @contacts.each do |contact| %>
-        <% outreach_count += contact.reaches.where(response: false).count %>
-        <% response_count += contact.reaches.where(response: true).count %>
-    <% end %>
     <h4>
         <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Contacts"><i class="fa fa-user"></i> <%= @contacts.count %></span>
-        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches"><i class="fa fa-share"></i> <%= outreach_count %></span>
-        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses"><i class="fa fa-reply"></i> <%= response_count %></span>
+        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches"><i class="fa fa-share"></i> <%= @reaches.count %></span>
+        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses"><i class="fa fa-reply"></i> <%= @responses.count %></span>
     </h4>
+
+    <!-- visualization -->
+    <div class="row">
+        <div class="col-12 col-lg-6">
+            <h4 class="center">Contacts over Time</h4>
+            <%= area_chart @contacts.order("DATE(created_at)").group("DATE(created_at)").count, xtitle: "Date", ytitle: "Contacts Created" %>
+        </div>
+        <div class="col-12 col-lg-6">
+            <h4 class="center">Interaction over Time</h4>
+            <%= area_chart @reaches.order("time").group("time").count, xtitle: "Date", ytitle: "Outreaches made" %>
+        </div>
+    </div>
+
+    <!-- listing contacts -->
+    <div class="space"></div>
     <h2>Contacts</h2>
     <div class="half-space"></div>
 

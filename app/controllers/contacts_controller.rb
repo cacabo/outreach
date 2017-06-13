@@ -4,12 +4,22 @@ class ContactsController < ApplicationController
     before_action :owned_contact, only: [:show, :edit, :update, :destroy]
 
     def index
+        # Determine contacts
         if (current_user and params[:long_term])
             @contacts = current_user.contacts.where(:long_term)
         elsif (current_user)
             @contacts = current_user.contacts
         else
-            @contacts = []
+            @contacts = {}
+        end
+
+        # Determined reaches and responses
+        @reaches = Reach.none
+        @responses = Reach.none
+
+        @contacts.each do |c|
+            @reaches = @reaches.or(c.reaches.where(response: false))
+            @responses = @responses.or(c.reaches.where(response: true))
         end
     end
 

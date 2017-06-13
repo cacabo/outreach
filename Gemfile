@@ -35,6 +35,7 @@ gem 'rails-assets-tether', '~> 1.1', '>= 1.1.1'
 gem 'bootstrap', '~> 4.0.0.alpha6'
 gem 'bootstrap_form'
 gem 'devise'
+gem 'chartkick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

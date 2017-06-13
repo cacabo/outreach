@@ -114,14 +114,16 @@
               <%= f.check_box :response %>
           <% end %>
           <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
-          <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+          <div class="buttons">
+              <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+          </div>
           <% end %>
       </div>
     </div>
   </div>
 </div>
 
-<div class="bottom-right cursor" data-toggle="tooltip" data-placement="left" title="Add a new contact">
+<div class="bottom-right cursor" data-toggle="tooltip" data-placement="left" title="Add a new outreach">
         <i class="fa fa-fw fa-plus-circle orange-text" data-toggle="modal" data-target="#reachForm" aria-hidden="true"></i>
 </div>
 
