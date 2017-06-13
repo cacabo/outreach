@@ -16,9 +16,20 @@
                         <div class="dropdown inline right float-right">
                             <i class="fa fa-chevron-down cursor gray-text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <% if @contact.uninterested.nil? or not @contact.uninterested %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :uninterested, value: true %>
+                                        <%= f.submit "Mark as uninterested", class: "dropdown-item" %>
+                                    <% end %>
+                                <% else %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :uninterested, value: false %>
+                                        <%= f.submit "Mark as interested", class: "dropdown-item cursor orange-text dark-orange-hover" %>
+                                    <% end %>
+                                <% end %>
+                                <%= link_to 'Edit contact', edit_contact_path(@contact), class: "dropdown-item" %>
+                                <div class="dropdown-divider"></div>
+                                <%= link_to 'Delete contact', contact_path, method: :delete, data: { confirm: 'Permanently delete user?' }, class: "dropdown-item" %>
                             </div>
                         </div>
                     </div>
@@ -33,6 +44,11 @@
                             <% end %>
                             <%= @contact.company %>
                         </p>
+                        <% if @contact.uninterested %>
+                            <h4>This fool is uninterested</h4>
+                        <% else %>
+                            <h4>Contact is interested</h4>
+                        <% end %>
                         <% if @contact.email.present? %>
                         <p>
                             <a href="mailto:<%=@contact.email%>">
@@ -84,9 +100,9 @@
                     </div>
                     <!-- closing card block -->
                     <% if @contact.notes.present? %>
-                        <div class="card-block">
-                            <p class="gray-text"><%= @contact.notes %></p>
-                        </div>
+                    <div class="card-block">
+                        <p class="gray-text"><%= @contact.notes %></p>
+                    </div>
                     <% end %>
                 </div>
                 <!-- closing card -->

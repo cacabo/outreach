@@ -70,7 +70,7 @@ class ContactsController < ApplicationController
     private
 
     def contact_params
-        params.require(:contact).permit(:name, :email, :secondary_email, :cell, :work, :company, :role, :linkedin, :facebook, :notes, :long_term)
+        params.require(:contact).permit(:name, :email, :secondary_email, :cell, :work, :company, :role, :linkedin, :facebook, :notes, :long_term, :uninterested)
     end
 
     def set_contact
