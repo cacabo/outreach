@@ -4,41 +4,51 @@
 <div class="container">
 
     <!-- overview -->
-    <h2>Overview</h2>
-    <h4>
-        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Contacts"><i class="fa fa-user"></i> <%= @contacts.count %></span>
-        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches"><i class="fa fa-share"></i> <%= @reaches.count %></span>
-        <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses"><i class="fa fa-reply"></i> <%= @responses.count %></span>
-    </h4>
-
-    <!-- visualization -->
-    <div class="row">
-        <div class="col-12 col-lg-6">
-            <h4 class="center">Contacts over Time</h4>
-            <% contact_sum = 0 %>
-            <%= area_chart @contacts.order("DATE(created_at)").group("DATE(created_at)").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (contact_sum += y)} }.reduce({}, :merge), xtitle: "Date", ytitle: "Contacts Created", colors: ['#ffa366'] %>
+    <div class="card card-rect shade-hover">
+        <div class="contact card-block">
+            <h2>Overview</h2>
         </div>
-        <div class="col-12 col-lg-6">
-            <h4 class="center">Interaction over Time</h4>
-            <% outreach_sum = 0 %>
-            <% response_sum = 0 %>
-            <%= area_chart [
-                {
-                    name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge)
-                },
-                {
-                    name: "Reaches", data: @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge)
-                }
-            ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
+        <div class="card-block">
+            <h4>
+                <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Contacts"><i class="fa fa-user"></i> <%= @contacts.count %></span>
+                <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches"><i class="fa fa-share"></i> <%= @reaches.count %></span>
+                <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses"><i class="fa fa-reply"></i> <%= @responses.count %></span>
+            </h4>
+
+            <!-- visualization -->
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <h4 class="center">Contacts over Time</h4>
+                    <% contact_sum = 0 %>
+                    <%= area_chart @contacts.order("DATE(created_at)").group("DATE(created_at)").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (contact_sum += y)} }.reduce({}, :merge), xtitle: "Date", ytitle: "Contacts Created", colors: ['#ffa366'] %>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <h4 class="center">Interaction over Time</h4>
+                    <% outreach_sum = 0 %>
+                    <% response_sum = 0 %>
+                    <%= area_chart [
+                        {
+                            name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge)
+                        },
+                        {
+                            name: "Reaches", data: @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge)
+                        }
+                    ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- listing contacts -->
+    <!-- space between contacts and overview -->
     <div class="space"></div>
-    <h2>Contacts</h2>
-    <div class="half-space"></div>
+    <div class="space"></div>
 
-    <div class="contact-list">
+    <!-- listing contacts -->
+    <div class="contact-list white shade-hover">
+        <div class="contact card-block">
+            <h2>Contacts</h2>
+        </div>
+
         <% @contacts.each do |contact| %>
         <div class="contact">
             <!-- header -->
@@ -118,11 +128,11 @@
 <div class="space"></div>
 <div class="space"></div>
 
-</div>
-
 <a href="<%=new_contact_path%>" class="bottom-right" data-toggle="tooltip" data-placement="left" title="Add a new contact">
     <i class="fa fa-fw fa-plus-circle orange-text" aria-hidden="true"></i>
 </a>
+
+</div>
 
 <script type="text/javascript">
     $(function () {
