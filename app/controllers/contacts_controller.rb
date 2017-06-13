@@ -6,18 +6,23 @@ class ContactsController < ApplicationController
     def index
         # Determine contacts
         if (current_user and params[:long_term])
+            # For long term mentors specifically
             @contacts = current_user.contacts.where(:long_term)
         elsif (current_user)
+            # Default show page
             @contacts = current_user.contacts
-            @mentors = current_user.contacts.where(long_term: true)
+            @mentors = current_user.contacts.where(long_term: true).includes(:reaches).order("reaches.time desc")
+            @short_term = current_user.contacts.where(long_term: false).or(current_user.contacts.where(long_term: nil))
         else
-            @contacts = {}
+            # If the user is not signed in, they can see no contacts
+            @contacts = Contact.none
         end
 
         # Determined reaches and responses
         @reaches = Reach.none
         @responses = Reach.none
 
+        # Reaches and responses are determined depending on the scope of contacts
         @contacts.each do |c|
             @reaches = @reaches.or(c.reaches.where(response: false))
             @responses = @responses.or(c.reaches.where(response: true))

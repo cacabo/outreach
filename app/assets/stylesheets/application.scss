@@ -80,6 +80,9 @@ body {
 
 .absolute {
     position: absolute !important;
+}
+
+.to-front {
     z-index: 2 !important;
 }
 
@@ -179,6 +182,20 @@ button:visited {
     box-shadow: 0 0 1.25vh rgba(0, 0, 0, 0.3);
 }
 
+.icon-shade {
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
+
+    &:hover {
+        text-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+    }
+}
+
+.circle {
+    border-radius: 50%;
+}
+
 #error-explanation {
     background-color: #f2dede;
     border-color: #ebcccc;
@@ -243,6 +260,10 @@ textarea {
     &:focus {
         border-color: $orange !important;
     }
+}
+
+.scale-down {
+    transform: scale(0.95, 0.95);
 }
 
 .orange-text {
@@ -408,12 +429,14 @@ p.date {
 }
 
 .bottom-right {
+    z-index: 3;
     position: fixed;
     right: 1rem;
     bottom: 1rem;
     padding: 0;
     font-size: 3rem;
     transition: all 0.2s ease;
+    vertical-align: bottom;
 
     &:hover {
         -ms-transform: scale(1.05, 1.05);
@@ -442,11 +465,14 @@ p.date {
 }
 
 .contact-list {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    margin-bottom: 5vh;
 }
 
 .contact {
-    border: 1px 1px 0 1px solid rgba(0, 0, 0, 0.15);
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.15);
     padding: 1rem;
     width: 100%;
     display: block;
