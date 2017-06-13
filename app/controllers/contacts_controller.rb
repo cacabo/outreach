@@ -9,6 +9,7 @@ class ContactsController < ApplicationController
             @contacts = current_user.contacts.where(:long_term)
         elsif (current_user)
             @contacts = current_user.contacts
+            @mentors = current_user.contacts.where(long_term: true)
         else
             @contacts = {}
         end

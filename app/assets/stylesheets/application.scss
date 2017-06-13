@@ -23,10 +23,11 @@ $gray: #404040;
 body {
     outline: 0 !important;
 
-    button, button:active, button:focus {
+    button,
+    button:active,
+    button:focus {
         outline: 0 !important;
     }
-
     //Smooth transition styling for all links
     a {
         -webkit-transition: all 0.2s ease;
@@ -129,7 +130,8 @@ button:visited {
     background-position: center;
 }
 
-.btn, .cursor {
+.btn,
+.cursor {
     cursor: pointer;
     cursor: hand;
 }
@@ -215,7 +217,7 @@ button:visited {
 }
 
 .marg-bot-0 {
-    margin-bottom: 0vh !important;
+    margin-bottom: 0 !important;
 }
 
 .turbolinks-progress-bar {
@@ -401,8 +403,8 @@ p.date {
 }
 
 .card.card-rect {
-    border-radius: 0px;
-    border: 0px transparent;
+    border-radius: 0;
+    border: 0 transparent;
 }
 
 .bottom-right {
@@ -414,8 +416,10 @@ p.date {
     transition: all 0.2s ease;
 
     &:hover {
-        -ms-transform: scale(1.05, 1.05); /* IE 9 */
-        -webkit-transform: scale(1.05, 1.05); /* Safari */
+        -ms-transform: scale(1.05, 1.05);
+        /* IE 9 */
+        -webkit-transform: scale(1.05, 1.05);
+        /* Safari */
         transform: scale(1.05, 1.05);
     }
 }
@@ -438,10 +442,11 @@ p.date {
 }
 
 .contact-list {
-    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
+
 .contact {
-    border: 0.5px solid rgba(0, 0, 0, 0.15);
+    border: 1px 1px 0 1px solid rgba(0, 0, 0, 0.15);
     padding: 1rem;
     width: 100%;
     display: block;
@@ -449,6 +454,10 @@ p.date {
 
     &:hover {
         background: rgba(0, 0, 0, 0.075);
+    }
+
+    &.header:hover {
+        background: rgba(0, 0, 0, 0);
     }
 }
 
