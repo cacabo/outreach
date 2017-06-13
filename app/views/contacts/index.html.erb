@@ -31,13 +31,13 @@
                     <div class="col-12 col-lg-6">
                         <h4 class="center">Contacts over Time</h4>
                         <% contact_sum = 0 %>
-                        <%= area_chart @contacts.order("DATE(created_at)").group("DATE(created_at)").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (contact_sum += y)} }.reduce({}, :merge), xtitle: "Date", ytitle: "Contacts Created", colors: ['#ffa366'] %>
+                        <%= area_chart @contacts.order("DATE(created_at)").group("DATE(created_at)").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (contact_sum += y)} }.reduce({}, :merge), xtitle: "Date", ytitle: "Number of Contacts", colors: ['#ffa366'] %>
                     </div>
                     <div class="col-12 col-lg-6">
                         <h4 class="center">Interaction over Time</h4>
                         <% outreach_sum = 0 %>
                         <% response_sum = 0 %>
-                        <%= area_chart [ { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) }, { name: "Reaches", data:
+                        <%= area_chart [ { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) }, { name: "Outreaches", data:
                         @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge) } ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
                     </div>
                 </div>

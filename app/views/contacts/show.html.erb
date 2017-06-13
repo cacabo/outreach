@@ -120,6 +120,18 @@
             </div>
             <!-- closing col -->
 
+            <div class="col-12 col-lg-6">
+                <div class="card card-rect shade-hover">
+                    <div class="card-block">
+                        <h4 class="center">Interaction over Time</h4>
+                        <% outreach_sum = 0 %>
+                        <% response_sum = 0 %>
+                        <%= area_chart [ { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) }, { name: "Outreaches", data:
+                        @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge) } ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <!-- closing row -->
 

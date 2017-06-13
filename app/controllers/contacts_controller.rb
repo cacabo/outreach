@@ -46,6 +46,8 @@ class ContactsController < ApplicationController
     end
 
     def show
+        @reaches = @contact.reaches.where(response: false)
+        @responses = @contact.reaches.where(response: true)
     end
 
     def edit
