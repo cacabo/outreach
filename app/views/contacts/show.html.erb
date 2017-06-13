@@ -1,127 +1,146 @@
-<div class="space"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <h1><%= @contact.name %>
-                <% if @contact.long_term %>
-                <i class="fa fa-certificate orange-text" aria-hidden="true"></i>
-                <% end %>
-            </h1>
-            <p class="date">Contact created
-                <%= @contact.created_at.to_date.to_formatted_s(:long_ordinal) %></p>
-            <p><%= @contact.role %>
-                |
-                <%= @contact.company %></p>
-            <% if @contact.email.present? %>
-            <p>
-                <a href="mailto:<%=@contact.email%>">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <%= @contact.email %>
-                </a>
-            </p>
-            <% end %>
-            <% if @contact.secondary_email.present? %>
-            <p>
-                <a href="mailto:<%=@contact.secondary_email%>">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <%= @contact.secondary_email %>
-                </a>
-            </p>
-            <% end %>
-            <% if @contact.cell.present? %>
-            <p>
-                Cell:
-                <a href="tel:<%=@contact.cell%>">
-                    <i class="fa fa-phone" aria-hidden="true"></i>
-                    <%= @contact.cell %>
-                </a>
-            </p>
-            <% end %>
-            <% if @contact.work.present? %>
-            <p>
-                Work:
-                <a href="tel:<%=@contact.work%>">
-                    <i class="fa fa-phone" aria-hidden="true"></i>
-                    <%= @contact.work %>
-                </a>
-            </p>
-            <% end %>
-            <% if @contact.linkedin.present? %>
-            <p>
-                <a href="<%= @contact.linkedin %>" target="_blank">
-                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                </a>
-            </p>
-            <% end %>
-            <% if @contact.facebook.present? %>
-            <p>
-                <a href="<%= @contact.facebook %>" target="_blank">
-                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                </a>
-            </p>
-            <% end %>
-            <h4>Notes:</h4>
-            <p><%= @contact.notes %></p>
-        </div>
-    </div>
+<div class="light-gray">
+    <div class="space"></div>
+    <div class="container">
 
-    <div class="row">
-        <div class="col-12">
-            <% if @contact.reaches.present? %>
-            <h3 class="marg-bot-25">History</h3>
+        <div class="row">
 
-            <% reaches = @contact.reaches.sort_by &:time %>
-            <% reaches.each do |reach| %>
-            <% if reach.response %>
-            <div class="reach response">
-            <% else %>
-                <div class="reach">
-                    <% end %>
-                    <p class="date">
-                        <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
-                    </p>
-                    <p class="notes">
-                        <%= reach.notes %>
-                    </p>
-                    <% if current_user %>
-                    <%= link_to contact_reach_path(@contact, reach), method: :delete do %>
-                    <i class="fa fa-times-circle float-right delete" aria-hidden="true"></i>
-                    <% end %>
-                    <% end %>
+            <div class="col-12 col-lg-6">
+                <div class="card card-rect shade-hover">
+                    <div class="card-block header">
+                        <h2><%= @contact.name %>
+                            <% if @contact.long_term %>
+                            <i class="fa fa-certificate orange-text" aria-hidden="true"></i>
+                            <% end %>
+                        </h2>
+                    </div>
+                    <div class="card-block">
+                        <p class="date">Contact created
+                            <%= @contact.created_at.to_date.to_formatted_s(:long_ordinal) %></p>
+                        <p><%= @contact.role %>
+                            |
+                            <%= @contact.company %></p>
+                        <% if @contact.email.present? %>
+                        <p>
+                            <a href="mailto:<%=@contact.email%>">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <%= @contact.email %>
+                            </a>
+                        </p>
+                        <% end %>
+                        <% if @contact.secondary_email.present? %>
+                        <p>
+                            <a href="mailto:<%=@contact.secondary_email%>">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <%= @contact.secondary_email %>
+                            </a>
+                        </p>
+                        <% end %>
+                        <% if @contact.cell.present? %>
+                        <p>
+                            Cell:
+                            <a href="tel:<%=@contact.cell%>">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <%= @contact.cell %>
+                            </a>
+                        </p>
+                        <% end %>
+                        <% if @contact.work.present? %>
+                        <p>
+                            Work:
+                            <a href="tel:<%=@contact.work%>">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <%= @contact.work %>
+                            </a>
+                        </p>
+                        <% end %>
+                        <% if @contact.linkedin.present? %>
+                        <p>
+                            <a href="<%= @contact.linkedin %>" target="_blank">
+                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                            </a>
+                        </p>
+                        <% end %>
+                        <% if @contact.facebook.present? %>
+                        <p>
+                            <a href="<%= @contact.facebook %>" target="_blank">
+                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                            </a>
+                        </p>
+                        <% end %>
+                        <h4>Notes:</h4>
+                        <p><%= @contact.notes %></p>
+                    </div>
+                    <!-- closing card block -->
                 </div>
-                <% end %>
-                <% end %>
+                <!-- closing card -->
             </div>
-        </div>
-    </div>
-    <div class="space"></div>
-    <div class="space"></div>
+            <!-- closing col -->
 
-    <!-- Modal -->
-    <div class="modal fade" id="reachForm" tabindex="-1" role="dialog" aria-labelledby="New reach form" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add new outreach</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
-                    <%= f.date_select :time, label: "Date" %>
-                    <%= f.form_group :response do %>
-                    <%= f.check_box :response %>
-                    <% end %>
-                    <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
-                    <div class="buttons">
-                        <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+        </div>
+        <!-- closing row -->
+
+        <div class="row">
+            <div class="col-12">
+                <% if @contact.reaches.present? %>
+                <h3 class="marg-bot-25">History</h3>
+
+                <% reaches = @contact.reaches.sort_by &:time %>
+                <% reaches.each do |reach| %>
+                <% if reach.response %>
+                <div class="reach response">
+                <% else %>
+                    <div class="reach">
+                        <% end %>
+                        <p class="date">
+                            <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
+                        </p>
+                        <p class="notes">
+                            <%= reach.notes %>
+                        </p>
+                        <% if current_user %>
+                        <%= link_to contact_reach_path(@contact, reach), method: :delete do %>
+                        <i class="fa fa-times-circle float-right delete" aria-hidden="true"></i>
+                        <% end %>
+                        <% end %>
                     </div>
                     <% end %>
+                    <% end %>
                 </div>
             </div>
         </div>
+        <!-- closing row -->
+
+        <div class="space"></div>
+        <div class="space"></div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="reachForm" tabindex="-1" role="dialog" aria-labelledby="New reach form" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add new outreach</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
+                        <%= f.date_select :time, label: "Date" %>
+                        <%= f.form_group :response do %>
+                        <%= f.check_box :response %>
+                        <% end %>
+                        <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
+                        <div class="buttons">
+                            <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- closing modal -->
     </div>
+    <!-- closing container -->
 
     <a href="<%=new_contact_path%>" class="bottom-right" aria-hidden="true">
         <i class="fa fa-circle white-text icon-shade scale-down" aria-hidden="true"></i>
@@ -129,9 +148,11 @@
     <a href="<%=new_contact_path%>" class="bottom-right" data-toggle="tooltip" data-placement="left" title="Add a new outreach">
         <i class="fa fa-plus-circle orange-text" data-toggle="modal" data-target="#reachForm" aria-hidden="true"></i>
     </a>
+</div>
+<!-- closing light-gray -->
 
-    <script type="text/javascript">
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+<script type="text/javascript">
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
