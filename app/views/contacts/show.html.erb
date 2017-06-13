@@ -19,12 +19,23 @@
                                 <% if @contact.uninterested.nil? or not @contact.uninterested %>
                                     <%= bootstrap_form_for @contact do |f| %>
                                         <%= f.hidden_field :uninterested, value: true %>
-                                        <%= f.submit "Mark as uninterested", class: "dropdown-item" %>
+                                        <%= f.submit "Mark as uninterested", class: "dropdown-item cursor orange-text-hover" %>
                                     <% end %>
                                 <% else %>
                                     <%= bootstrap_form_for @contact do |f| %>
                                         <%= f.hidden_field :uninterested, value: false %>
-                                        <%= f.submit "Mark as interested", class: "dropdown-item cursor orange-text dark-orange-hover" %>
+                                        <%= f.submit "Mark as interested", class: "dropdown-item cursor orange-text-hover" %>
+                                    <% end %>
+                                <% end %>
+                                <% if @contact.long_term.nil? or not @contact.long_term %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :long_term, value: true %>
+                                        <%= f.submit "Mark as long-term", class: "dropdown-item cursor orange-text-hover" %>
+                                    <% end %>
+                                <% else %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :long_term, value: false %>
+                                        <%= f.submit "Unmark as long term", class: "dropdown-item cursor orange-text-hover" %>
                                     <% end %>
                                 <% end %>
                                 <%= link_to 'Edit contact', edit_contact_path(@contact), class: "dropdown-item" %>

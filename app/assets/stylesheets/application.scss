@@ -19,6 +19,7 @@ $orange: #ff6600; //rgb(255,102,0)
 $dark-orange: #cc5200; //rgb(204,82,0)
 $light-orange: #ffa366; //rgb(255,163,102)
 $gray: #808080;
+$light-gray: rgba(0, 0, 0, 0.0325);
 
 body {
     outline: 0 !important;
@@ -268,6 +269,14 @@ textarea {
 
 .orange-text {
     color: $orange !important;
+}
+
+.orange-text-hover {
+    color: $orange !important;
+
+    &:hover {
+        color: $dark-orange !important;
+    }
 }
 
 .gray-text {
@@ -529,5 +538,15 @@ ul.icons {
 
     &:hover {
         background: rgba(0, 0, 0, 0.5);
+    }
+}
+
+.dropdown-item {
+    background: white;
+    outline: 0 !important;
+
+    &:hover, &:focus, &:active {
+        background: $light-gray;
+        outline: 0 !important;
     }
 }
