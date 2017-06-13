@@ -7,18 +7,32 @@
             <div class="col-12 col-lg-6">
                 <div class="card card-rect shade-hover">
                     <div class="card-block header">
-                        <h2><%= @contact.name %>
+                        <h2 class="inline"><%= @contact.name %>
                             <% if @contact.long_term %>
                             <i class="fa fa-certificate orange-text" aria-hidden="true"></i>
                             <% end %>
                         </h2>
+
+                        <div class="dropdown inline right float-right">
+                            <i class="fa fa-chevron-down cursor gray-text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-block">
-                        <p class="date">Contact created
-                            <%= @contact.created_at.to_date.to_formatted_s(:long_ordinal) %></p>
-                        <p><%= @contact.role %>
+                    <div class="card-block header">
+                        <p class="date small">Contact created
+                            <%= @contact.created_at.to_date.to_formatted_s(:long_ordinal) %>
+                        </p>
+                        <p>
+                            <%= @contact.role %>
+                            <% if @contact.role.present? and @contact.company.present? %>
                             |
-                            <%= @contact.company %></p>
+                            <% end %>
+                            <%= @contact.company %>
+                        </p>
                         <% if @contact.email.present? %>
                         <p>
                             <a href="mailto:<%=@contact.email%>">
@@ -67,10 +81,13 @@
                             </a>
                         </p>
                         <% end %>
-                        <h4>Notes:</h4>
-                        <p><%= @contact.notes %></p>
                     </div>
                     <!-- closing card block -->
+                    <% if @contact.notes.present? %>
+                        <div class="card-block">
+                            <p class="gray-text"><%= @contact.notes %></p>
+                        </div>
+                    <% end %>
                 </div>
                 <!-- closing card -->
             </div>
