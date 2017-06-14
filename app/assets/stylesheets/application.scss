@@ -16,6 +16,8 @@
  */
 @import "bootstrap";
 $orange: #ff6600; //rgb(255,102,0)
+$transparent-orange-50: rgba(255, 102, 0, 0.5);
+$transparent-orange-25: rgba(255, 102, 0, 0.25);
 $dark-orange: #cc5200; //rgb(204,82,0)
 $light-orange: #ffa366; //rgb(255,163,102)
 $gray: #808080;
@@ -609,22 +611,40 @@ ul.icons {
 }
 
 .navbar-backer {
-    position: absolute;
+    position: fixed;
     top: 0;
+    height: 4rem;
+    width: 118px;
+    z-index: 1;
 
     &.orange {
         background: $orange;
         left: 0;
     }
 
-    &.light-orange {
-        background: $light-orange;
+    &.transparent-orange-50 {
+        background: $transparent-orange-50;
         left: 18px;
     }
 
+    &.transparent-orange-25 {
+        background: $transparent-orange-25;
+        left: 36px;
+    }
+
     &.navbar-backer-skew {
+        width: 148px;
         -ms-transform: skewX(-20deg); /* IE 9 */
         -webkit-transform: skewX(-20deg); /* Safari */
         transform: skewX(-20deg);
     }
+}
+
+.brand-header {
+    top: 0;
+    left: 0;
+    position: fixed;
+    padding-left: 1rem;
+    padding-top: 1rem;
+    font-size: 120%;
 }

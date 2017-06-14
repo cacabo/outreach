@@ -31,23 +31,23 @@
 
         <script>
             $(document).ready(function() {
-                $('#alerts').slideDown(250).delay(1250).slideUp(250);
+                $('#alerts').slideDown(250).delay(1500).slideUp(250);
             });
 
-            function resizeBacker() {
-                var $backer = $('.navbar-backer');
-                $backer.height($('.navbar').outerHeight());
-                $backer.width('112px');
-                $('.navbar-backer-skew').width('132px');
-            }
-
-            $(document).ready(function() {
-                resizeBacker();
-            });
-
-            $(window).resize(function() {
-                resizeBacker();
-            });
+            // function resizeBacker() {
+            //     var $backer = $('.navbar-backer');
+            //     $backer.height($('.navbar').outerHeight());
+            //     $backer.width('112px');
+            //     $('.navbar-backer-skew').width('132px');
+            // }
+            //
+            // $(document).ready(function() {
+            //     resizeBacker();
+            // });
+            //
+            // $(window).resize(function() {
+            //     resizeBacker();
+            // });
 
             $('.collapse-trigger').click(function() {
                 $('.collapse-trigger i.absolute-right').toggleClass('rotate');
