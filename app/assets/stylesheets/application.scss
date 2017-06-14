@@ -241,7 +241,7 @@ button:visited {
 }
 
 .turbolinks-progress-bar {
-    background: $orange;
+    background: $dark-orange;
 }
 
 a,
@@ -690,6 +690,7 @@ ul.icons {
     right: 0;
     height: 4rem;
     z-index: 2;
+    width: 218px;
 
     &.orange {
         right: 18px;

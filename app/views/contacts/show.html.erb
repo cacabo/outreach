@@ -1,5 +1,7 @@
 <div class="light-gray">
     <div class="space"></div>
+    <div class="space"></div>
+    <div class="space"></div>
     <div class="container">
 
         <div class="row">
@@ -59,11 +61,13 @@
                             <%= @contact.created_at.to_date.to_formatted_s(:long_ordinal) %>
                         </p>
                         <p>
-                            <%= @contact.role %>
-                            <%= ' | ' if @contact.role.present? and @contact.company.present? %>
-                            <%= @contact.company %>
-                            <%= ' | ' if @contact.company.present? and @contact.company_details.present? %>
-                            <%= @contact.company_details %>
+                            <% if @contact.role.present? %>
+                                <%= @contact.role %><br>
+                            <% end %>
+                            <span class="gray-text"><%= @contact.company %>
+                                <%= ' | ' if @contact.company.present? and @contact.company_details.present? %>
+                                <%= @contact.company_details %>
+                            </span>
                         </p>
 
                         <% if @contact.email.present? and @contact.secondary_email.present? %>
