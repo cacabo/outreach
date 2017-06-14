@@ -648,3 +648,61 @@ ul.icons {
     padding-top: 1rem;
     font-size: 120%;
 }
+
+.upper-right-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: $orange;
+    z-index: 3;
+
+    ul.links {
+        color: white !important;
+        list-style: none;
+        text-align: right;
+        padding: 1rem;
+        margin: 0;
+        height: 4rem;
+
+        li {
+            display: inline;
+            margin: 0rem 0.5rem;
+
+            a {
+                color: white !important;
+                border-bottom: 0px solid white;
+
+                &:hover {
+                    color: white !important;
+                    border-bottom: 4px solid white;
+                }
+            }
+        }
+    }
+}
+
+.upper-right-skew {
+    -ms-transform: skewX(-20deg); /* IE 9 */
+    -webkit-transform: skewX(-20deg); /* Safari */
+    transform: skewX(-20deg);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 4rem;
+    z-index: 2;
+
+    &.orange {
+        right: 18px;
+        background: $orange;
+    }
+
+    &.transparent-orange-50 {
+        right: 36px;
+        background: $transparent-orange-50;
+    }
+
+    &.transparent-orange-25 {
+        right: 54px;
+        background: $transparent-orange-25;
+    }
+}

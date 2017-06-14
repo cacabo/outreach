@@ -3,44 +3,35 @@
 <div class="navbar-backer transparent-orange-25 navbar-backer-skew"></div>
 <div class="navbar-backer orange"></div>
 <div class="navbar-backer orange navbar-backer-skew"></div>
-<a class="brand-header to-front varela white-text" href="<%= root_path %>">Outreach</a>
+<a class="brand-header to-front varela white-text" href="<%= root_path %>">
+    Outreach
+</a>
 
-<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-    <button class="navbar-toggler navbar-toggler-right collapsed" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="icon-bar top-bar"></span>
-        <span class="icon-bar middle-bar"></span>
-        <span class="icon-bar bottom-bar"></span>
-        <span class="sr-only" Toggle navigation></span>
-    </button>
-    <!-- <a class="navbar-brand white-text varela to-front" href="<%= root_path %>">Outreach</a> -->
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav mr-auto mt-2 mt-md-0"></ul>
-        <ul class="navbar-nav">
-            <% if current_user.nil? %>
-                <li class="nav-item">
-                    <%= link_to 'Sign in', new_user_session_path, class: 'nav-link' %>
-                </li>
+<div class="upper-right-skew orange"></div>
+<div class="upper-right-skew transparent-orange-50"></div>
+<div class="upper-right-skew transparent-orange-25"></div>
+<div class="upper-right-nav">
+    <ul class="links">
+        <% if current_user.nil? %>
+            <li class="nav-item">
+                <%= link_to 'Sign in', new_user_session_path %>
+            </li>
 
-                <li class="nav-item">
-                    <%= link_to 'Sign up', new_user_registration_path, class: 'nav-link' %>
-                </li>
-            <% else %>
-                <li class="nav-item">
-                    <%= link_to 'Home', root_path, class: 'nav-link' %>
-                </li>
+            <li class="nav-item">
+                <%= link_to 'Sign up', new_user_registration_path %>
+            </li>
+        <% else %>
+            <li class="nav-item">
+                <%= link_to 'Contacts', contacts_path %>
+            </li>
 
-                <li class="nav-item">
-                    <%= link_to 'Contacts', contacts_path, class: 'nav-link' %>
-                </li>
+            <li class="nav-item">
+                <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+            </li>
+        <% end %>
+    </ul>
+</div>
 
-                <li class="nav-item">
-                    <%= link_to 'New Contact', new_contact_path, class: 'nav-link' %>
-                </li>
-
-                <li class="nav-item">
-                    <%= link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-                </li>
-            <% end %>
-        </ul>
-    </div>
-</nav>
+<script type="text/javascript">
+    $('.upper-right-skew').width($('.upper-right-nav').width());
+</script>
