@@ -366,11 +366,13 @@ p.date {
     text-align: center;
 
     a {
-        color: gray;
+        color: $gray;
         font-weight: bold;
+        border-bottom: 0px solid $gray;
 
         &:hover {
             color: $gray;
+            border-bottom: 4px solid $gray;
         }
     }
 }
@@ -647,6 +649,13 @@ ul.icons {
     padding-left: 1rem;
     padding-top: 1rem;
     font-size: 120%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    border-bottom: 0px solid white;
+
+    &:hover {
+        border-bottom: 4px solid white;
+    }
 }
 
 .upper-right-nav {
