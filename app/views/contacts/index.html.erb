@@ -53,7 +53,7 @@
             <div class="col-12 col-lg-6">
                 <div class="contact-list white shade-hover">
                     <div class="contact card-block header">
-                        <h2>Short-term Contacts</h2>
+                        <h3>Short-term Contacts</h3>
                     </div>
 
                     <% @short_term.each do |contact| %>
@@ -122,16 +122,95 @@
                     <% end %>
                 </div>
                 <!-- closing contact list -->
+
+                <% if @uninterested and @uninterested.present? %>
+                <!-- listing uninterested -->
+                    <div class="contact-list white shade-hover">
+                        <div class="contact card-block header cursor collapse-trigger" data-toggle="collapse" href="#uninterested-wrapper" aria-expanded="false" aria-controls="uninterested-wrapper">
+                            <h3 class="inline">Uninterested Contacts</h3>
+                            <i class="fa fa-chevron-up cursor gray-text absolute absolute-right"></i>
+                        </div>
+
+                        <div class="contacts-wrapper collapse" id="uninterested-wrapper">
+                        <% @uninterested.each do |contact| %>
+                        <div class="contact">
+                            <!-- header -->
+                            <div class="row">
+                                <div class="col-12">
+                                    <!-- contact information -->
+                                    <ul class="icons absolute absolute-right right">
+                                        <% if contact.email.present? %>
+                                        <li>
+                                            <a href="mailto:<%=contact.email%>">
+                                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <% end %>
+                                        <% if contact.cell.present? %>
+                                        <li>
+                                            <a href="tel:<%=contact.cell%>">
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <% end %>
+                                        <% if contact.facebook.present? %>
+                                        <li>
+                                            <a href="<%=contact.facebook%>" target="_blank">
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <% end %>
+                                        <% if contact.linkedin.present? %>
+                                        <li>
+                                            <a href="<%=contact.linkedin%>" target="_blank">
+                                                <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                            </a>
+                                        </li>
+                                        <% end %>
+
+                                        <li>
+                                            <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches">
+                                                <i class="fa fa-share"></i>
+                                                <%= contact.reaches.where(response: false).count %>
+                                            </span>
+                                            <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses">
+                                                <i class="fa fa-reply"></i>
+                                                <%= contact.reaches.where(response: true).count %>
+                                            </span>
+                                        </li>
+                                    </ul>
+
+                                    <!-- name -->
+                                    <%= link_to contact do %>
+                                    <h4 class="inline"><%= contact.name %></h4>
+                                    <% end %>
+                                </div>
+                            </div>
+                            <p class="marg-bot-0">
+                                <%= contact.company %>
+                                <% if contact.company.present? and contact.role.present? %>
+                                |
+                                <% end %>
+                                <%= contact.role %>
+                            </p>
+                        </div>
+                        <!-- closing contact -->
+                        <% end %>
+                    </div>
+                    <!-- closing contact list -->
+                <% end %>
+
             </div>
-            <!-- closing container -->
+            <!-- closing col around short term contacts -->
             <% end %>
+            </div>
 
             <% if @mentors and @mentors.present? %>
             <!-- listing mentors -->
             <div class="col-12 col-lg-6">
                 <div class="contact-list white shade-hover">
                     <div class="contact card-block header">
-                        <h2>Long-term Mentors</h2>
+                        <h3>Long-term Mentors</h3>
                     </div>
 
                     <% @mentors.each do |contact| %>
@@ -205,85 +284,8 @@
             <% end %>
         </div>
 
-        <% if @uninterested and @uninterested.present? %>
-        <!-- listing mentors -->
-        <div class="col-12 col-lg-6">
-            <div class="contact-list white shade-hover">
-                <div class="contact card-block header">
-                    <h2>Uninterested Contacts</h2>
-                </div>
-
-                <% @uninterested.each do |contact| %>
-                <div class="contact">
-                    <!-- header -->
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- contact information -->
-                            <ul class="icons absolute absolute-right right">
-                                <% if contact.email.present? %>
-                                <li>
-                                    <a href="mailto:<%=contact.email%>">
-                                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <% end %>
-                                <% if contact.cell.present? %>
-                                <li>
-                                    <a href="tel:<%=contact.cell%>">
-                                        <i class="fa fa-phone" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <% end %>
-                                <% if contact.facebook.present? %>
-                                <li>
-                                    <a href="<%=contact.facebook%>" target="_blank">
-                                        <i class="fa fa-facebook" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <% end %>
-                                <% if contact.linkedin.present? %>
-                                <li>
-                                    <a href="<%=contact.linkedin%>" target="_blank">
-                                        <i class="fa fa-linkedin" aria-hidden="true"></i>
-                                    </a>
-                                </li>
-                                <% end %>
-
-                                <li>
-                                    <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches">
-                                        <i class="fa fa-share"></i>
-                                        <%= contact.reaches.where(response: false).count %>
-                                    </span>
-                                    <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses">
-                                        <i class="fa fa-reply"></i>
-                                        <%= contact.reaches.where(response: true).count %>
-                                    </span>
-                                </li>
-                            </ul>
-
-                            <!-- name -->
-                            <%= link_to contact do %>
-                            <h4 class="inline"><%= contact.name %></h4>
-                            <% end %>
-                        </div>
-                    </div>
-                    <p class="marg-bot-0">
-                        <%= contact.company %>
-                        <% if contact.company.present? and contact.role.present? %>
-                        |
-                        <% end %>
-                        <%= contact.role %>
-                    </p>
-                </div>
-                <!-- closing contact -->
-                <% end %>
-            </div>
-            <!-- closing contact list -->
-        </div>
-        <!-- closing col -->
-        <% end %>
     </div>
-    <!-- closing row -->
+    <!-- closing row surrounding all contacts -->
 
     <div class="space"></div>
     <div class="buttons">

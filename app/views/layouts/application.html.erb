@@ -48,6 +48,10 @@
             $(window).resize(function() {
                 resizeBacker();
             });
+
+            $('.collapse-trigger').click(function() {
+                $('.collapse-trigger i.absolute-right').toggleClass('rotate');
+            });
         </script>
     </body>
 </html>

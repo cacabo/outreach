@@ -459,6 +459,23 @@ p.date {
     display: block;
     margin: 0;
 
+    i.absolute-right {
+        margin-right: 2rem;
+        margin-top: 0.25rem;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+
+        -ms-transform: rotate(0deg); /* IE 9 */
+        -webkit-transform: rotate(0deg); /* Safari */
+        transform: rotate(0deg);
+
+        &.rotate {
+            -ms-transform: rotate(180deg); /* IE 9 */
+            -webkit-transform: rotate(180deg); /* Safari */
+            transform: rotate(180deg);
+        }
+    }
+
     &:hover {
         background: rgba(0, 0, 0, 0.075);
     }
