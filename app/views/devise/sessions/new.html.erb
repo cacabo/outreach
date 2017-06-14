@@ -1,35 +1,50 @@
+<div class="light-gray">
 <div class="space"></div>
 <div class="space"></div>
 <div class="container">
     <div class="row">
         <div class="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
-            <h2>Log in</h2>
+            <div class="card card-rect shade-hover">
+                <div class="card-block header">
+                    <h2>Log in</h2>
+                </div>
+                <!-- closing card-block header -->
 
-            <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-            <div class="field">
-                <%= f.email_field :email, autofocus: true %>
+                <div class="card-block">
+                    <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                        <div class="field">
+                            <%= f.email_field :email, autofocus: true %>
+                        </div>
+
+                        <div class="field">
+                            <%= f.password_field :password, autocomplete: "off" %>
+                        </div>
+
+                        <% if devise_mapping.rememberable? -%>
+                        <div class="field">
+                            <%= f.check_box :remember_me %>
+                        </div>
+                        <% end -%>
+
+                        <div class="actions">
+                            <%= f.submit "Log in", class: 'btn btn-outline-orange' %>
+                        </div>
+                    <% end %>
+                    <!-- closing form -->
+
+                    <div class="space"></div>
+
+                    <%= render "devise/shared/links" %>
+                </div>
+                <!-- closing card-block -->
             </div>
-
-            <div class="field">
-                <%= f.password_field :password, autocomplete: "off" %>
-            </div>
-
-            <% if devise_mapping.rememberable? -%>
-            <div class="field">
-                <%= f.check_box :remember_me %>
-            </div>
-            <% end -%>
-
-            <div class="actions">
-                <%= f.submit "Log in", class: 'btn btn-outline-orange' %>
-            </div>
-            <% end %>
-
-            <div class="space"></div>
-            
-            <%= render "devise/shared/links" %>
+            <!-- closing card -->
         </div>
+        <!-- closing col -->
     </div>
 </div>
 <div class="space"></div>
 <div class="space"></div>
+<div class="space"></div>
+</div>
+<!-- closing light-gray -->

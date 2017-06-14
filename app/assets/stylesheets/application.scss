@@ -104,6 +104,10 @@ body {
     overflow: hidden;
 }
 
+.small-marg {
+    margin-bottom: 0.5rem;
+}
+
 .center {
     text-align: center;
     width: 100%;
@@ -646,8 +650,8 @@ ul.icons {
     top: 0;
     left: 0;
     position: fixed;
-    padding-left: 1rem;
-    padding-top: 1rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
     font-size: 120%;
     -webkit-transition: all 0.2s ease;
     transition: all 0.2s ease;
