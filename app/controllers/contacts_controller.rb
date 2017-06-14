@@ -12,7 +12,9 @@ class ContactsController < ApplicationController
             # Default show page
             @contacts = current_user.contacts
             @mentors = current_user.contacts.where(long_term: true).includes(:reaches).order("reaches.time desc")
-            @short_term = current_user.contacts.where(long_term: false).or(current_user.contacts.where(long_term: nil))
+            @uninterested = current_user.contacts.where(uninterested: true)
+            interested = current_user.contacts.where(uninterested: false).or(current_user.contacts.where(uninterested: nil))
+            @short_term = current_user.contacts.where(long_term: false).or(current_user.contacts.where(long_term: nil)).merge(interested)
         else
             # If the user is not signed in, they can see no contacts
             @contacts = Contact.none
@@ -48,6 +50,7 @@ class ContactsController < ApplicationController
     def show
         @reaches = @contact.reaches.where(response: false)
         @responses = @contact.reaches.where(response: true)
+        @history = @contact.reaches.sort_by &:time
     end
 
     def edit

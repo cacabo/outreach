@@ -4,7 +4,7 @@
 
         <div class="row">
 
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 marg-bot-50">
                 <div class="card card-rect shade-hover">
                     <div class="card-block header <%= 'gray' if @contact.uninterested %>">
                         <h2 class="inline"><%= @contact.name %>
@@ -20,26 +20,26 @@
                             <i class="fa fa-chevron-down cursor gray-text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 <% if @contact.uninterested.nil? or not @contact.uninterested %>
-                                    <%= bootstrap_form_for @contact do |f| %>
-                                        <%= f.hidden_field :uninterested, value: true %>
-                                        <%= f.submit "Mark as uninterested", class: "dropdown-item cursor orange-text-hover" %>
-                                    <% end %>
-                                <% else %>
-                                    <%= bootstrap_form_for @contact do |f| %>
-                                        <%= f.hidden_field :uninterested, value: false %>
-                                        <%= f.submit "Mark as interested", class: "dropdown-item cursor orange-text-hover" %>
-                                    <% end %>
+                                <%= bootstrap_form_for @contact do |f| %>
+                                <%= f.hidden_field :uninterested, value: true %>
+                                <%= f.submit "Mark as uninterested", class: "dropdown-item cursor orange-text-hover" %>
+                                <% end %>
+                            <% else %>
+                                <%= bootstrap_form_for @contact do |f| %>
+                                <%= f.hidden_field :uninterested, value: false %>
+                                <%= f.submit "Mark as interested", class: "dropdown-item cursor orange-text-hover" %>
+                                <% end %>
                                 <% end %>
                                 <% if @contact.long_term.nil? or not @contact.long_term %>
-                                    <%= bootstrap_form_for @contact do |f| %>
-                                        <%= f.hidden_field :long_term, value: true %>
-                                        <%= f.submit "Mark as long-term", class: "dropdown-item cursor orange-text-hover" %>
-                                    <% end %>
-                                <% else %>
-                                    <%= bootstrap_form_for @contact do |f| %>
-                                        <%= f.hidden_field :long_term, value: false %>
-                                        <%= f.submit "Unmark as long term", class: "dropdown-item cursor orange-text-hover" %>
-                                    <% end %>
+                                <%= bootstrap_form_for @contact do |f| %>
+                                <%= f.hidden_field :long_term, value: true %>
+                                <%= f.submit "Mark as long-term", class: "dropdown-item cursor orange-text-hover" %>
+                                <% end %>
+                            <% else %>
+                                <%= bootstrap_form_for @contact do |f| %>
+                                <%= f.hidden_field :long_term, value: false %>
+                                <%= f.submit "Unmark as long term", class: "dropdown-item cursor orange-text-hover" %>
+                                <% end %>
                                 <% end %>
                                 <%= link_to 'Edit contact', edit_contact_path(@contact), class: "dropdown-item" %>
                                 <div class="dropdown-divider"></div>
@@ -107,6 +107,13 @@
                         </p>
                         <% end %>
                     </div>
+                    <div class="card-block header">
+                        <h4 class="center">Interaction over Time</h4>
+                        <% outreach_sum = 0 %>
+                        <% response_sum = 0 %>
+                        <%= area_chart [ { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) }, { name: "Outreaches", data:
+                        @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge) } ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
+                    </div>
                     <!-- closing card block -->
                     <% if @contact.notes.present? %>
                     <div class="card-block">
@@ -118,33 +125,36 @@
             </div>
             <!-- closing col -->
 
+            <% if @contact.reaches.present? %>
             <div class="col-12 col-lg-6">
                 <div class="card card-rect shade-hover">
-                    <div class="card-block">
-                        <h4 class="center">Interaction over Time</h4>
-                        <% outreach_sum = 0 %>
-                        <% response_sum = 0 %>
-                        <%= area_chart [ { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) }, { name: "Outreaches", data:
-                        @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge) } ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
+                    <div class="card-block header">
+                        <h2>Contact History</h2>
                     </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- closing row -->
-
-        <div class="row">
-            <div class="col-12">
-                <% if @contact.reaches.present? %>
-                <h3 class="marg-bot-25">History</h3>
-
-                <% reaches = @contact.reaches.sort_by &:time %>
-                <% reaches.each do |reach| %>
-                <% if reach.response %>
-                <div class="reach response">
-                <% else %>
-                    <div class="reach">
-                        <% end %>
+                    <div class="card-block">
+                        <div class="timeline">
+                            <div class="cap"></div>
+                            <div class="space"></div>
+                            <p class="date">6/17/17</p>
+                            <div class="marker"></div>
+                            <i class="fa fa-times-circle fa-lg delete" aria-hidden="true"></i>
+                            <div class="timeline-block">
+                                <h4>Some stuff</h4>
+                                <p>That I did</p>
+                            </div>
+                            <p class="date">8/31/17</p>
+                            <div class="marker"></div>
+                            <i class="fa fa-times-circle fa-lg delete" aria-hidden="true"></i>
+                            <div class="timeline-block">
+                                <h4>Some stuff</h4>
+                                <p>That I did</p>
+                            </div>
+                            <div class="half-space"></div>
+                            <div class="cap"></div>
+                        </div>
+                    </div>
+                    <!-- <% @history.each do |reach| %>
+                    <div class="reach <%= 'response' if reach.response %>">
                         <p class="date">
                             <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
                         </p>
@@ -157,51 +167,53 @@
                         <% end %>
                         <% end %>
                     </div>
-                    <% end %>
-                    <% end %>
+                    <% end %> -->
                 </div>
+                <!-- closing card -->
             </div>
+            <!-- closing col -->
+            <% end %>
         </div>
         <!-- closing row -->
-
-        <div class="space"></div>
-        <div class="space"></div>
-
-        <!-- Modal -->
-        <div class="modal fade" id="reachForm" tabindex="-1" role="dialog" aria-labelledby="New reach form" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Add new outreach</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
-                        <%= f.date_select :time, label: "Date" %>
-                        <%= f.form_group :response do %>
-                        <%= f.check_box :response %>
-                        <% end %>
-                        <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
-                        <div class="buttons">
-                            <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
-                        </div>
-                        <% end %>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- closing modal -->
     </div>
     <!-- closing container -->
 
-    <a href="<%=new_contact_path%>" class="bottom-right" aria-hidden="true">
+    <div class="space"></div>
+    <div class="space"></div>
+
+    <!-- New reach model -->
+    <div class="modal fade" id="reachForm" tabindex="-1" role="dialog" aria-labelledby="New reach form" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add new outreach</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
+                    <%= f.date_select :time, label: "Date" %>
+                    <%= f.form_group :response do %>
+                    <%= f.check_box :response %>
+                    <% end %>
+                    <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
+                    <div class="buttons">
+                        <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- closing modal -->
+
+    <div class="bottom-right" aria-hidden="true">
         <i class="fa fa-circle white-text icon-shade scale-down" aria-hidden="true"></i>
-    </a>
-    <a href="<%=new_contact_path%>" class="bottom-right" data-toggle="tooltip" data-placement="left" title="Add a new outreach">
+    </div>
+    <div class="cursor bottom-right" data-toggle="tooltip" data-placement="left" title="Add a new outreach">
         <i class="fa fa-plus-circle orange-text" data-toggle="modal" data-target="#reachForm" aria-hidden="true"></i>
-    </a>
+    </div>
 </div>
 <!-- closing light-gray -->
 

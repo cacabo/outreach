@@ -356,38 +356,6 @@ p.date {
     font-style: italic;
 }
 
-.reach {
-    border-top: 1px solid rgba(0, 0, 0, 0.15);
-    background: rgba(0, 0, 0, 0.075);
-
-    &.response {
-        background: rgba(0, 255, 0, 0.075);
-    }
-
-    .date,
-    .notes {
-        margin: 0;
-        padding: 1rem 2rem;
-        display: inline-block;
-    }
-
-    .date {
-        background: white;
-        border-right: 1px solid rgba(0, 0, 0, 0.15);
-    }
-
-    .delete {
-        margin: 1rem 2rem;
-        color: rgba(0, 0, 0, 0.3);
-        transition: all 0.2s ease;
-        font-size: 1.75rem;
-
-        &:hover {
-            color: rgba(0, 0, 0, 0.5);
-        }
-    }
-}
-
 #foot {
     border-top: 1px solid rgba(0, 0, 0, 0.15);
     background: rgba(0, 0, 0, 0.075);
@@ -553,4 +521,69 @@ ul.icons {
 
 .small-icons {
     font-size: 40%;
+}
+
+.timeline {
+    $offset: 112px;
+    $width: 2px;
+
+    border-left: $width solid $orange;
+    margin-left: $offset;
+
+    .cap {
+        position: absolute;
+        width: 24px;
+        height: $width;
+        background: $orange;
+        -ms-transform: translateX(-14px); /* IE 9 */
+        -webkit-transform: translateX(-14px);
+        tranform: translateX(-14px);
+    }
+
+    .date {
+        position: absolute;
+        text-align: right;
+        width: 100%;
+        padding-right: 36px;
+        -ms-transform: translateX(-100%);
+        -webkit-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+
+    .marker {
+        margin-top: 6px;
+        height: 18px;
+        width: 18px;
+        border-radius: 12px;
+        background: white;
+        border: $width solid $orange;
+        position: absolute;
+        -ms-transform: translateX(calc(-9px - ($width/2)));
+        -webkit-transform: translateX(-11px);
+        transform: translateX(-11px);
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+
+        &.response {
+            background: $orange;
+        }
+    }
+
+    .timeline-block {
+        margin-left: 24px;
+    }
+
+    .delete {
+        padding-right: 1.25rem;
+        padding-top: 4.5px;
+        position: absolute;
+        right: 0;
+        color: rgba(0, 0, 0, 0.15);
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+
+        &:hover {
+            color: rgba(0, 0, 0, 0.3);
+        }
+    }
 }
