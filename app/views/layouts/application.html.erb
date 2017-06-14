@@ -33,6 +33,13 @@
             $(document).ready(function() {
                 $('#alerts').slideDown(250).delay(1250).slideUp(250);
             });
+
+            $(document).ready(function() {
+                $backer = $('.navbar-backer');
+                $backer.height($('.navbar').outerHeight());
+                $backer.width('112px');
+                $('.navbar-backer-skew').width('132px');
+            });
         </script>
     </body>
 </html>

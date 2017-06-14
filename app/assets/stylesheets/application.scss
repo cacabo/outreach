@@ -451,7 +451,7 @@ p.date {
 }
 
 .contact {
-    border-width: 0px 1px 1px 1px;
+    border-width: 0 1px 1px 1px;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.15);
     padding: 1rem;
@@ -513,7 +513,9 @@ ul.icons {
     background: white;
     outline: 0 !important;
 
-    &:hover, &:focus, &:active {
+    &:active,
+    &:focus,
+    &:hover {
         background: $light-gray;
         outline: 0 !important;
     }
@@ -526,7 +528,6 @@ ul.icons {
 .timeline {
     $offset: 116px;
     $width: 2px;
-
     border-left: $width solid $orange;
     margin-left: $offset;
 
@@ -535,7 +536,8 @@ ul.icons {
         width: 24px;
         height: $width;
         background: $orange;
-        -ms-transform: translateX(-14px); /* IE 9 */
+        -ms-transform: translateX(-14px);
+        /* IE 9 */
         -webkit-transform: translateX(-14px);
         tranform: translateX(-14px);
     }
@@ -586,5 +588,26 @@ ul.icons {
         &:hover {
             color: rgba(0, 0, 0, 0.3);
         }
+    }
+}
+
+.navbar-backer {
+    position: absolute;
+    top: 0;
+
+    &.orange {
+        background: $orange;
+        left: 0;
+    }
+
+    &.light-orange {
+        background: $light-orange;
+        left: 18px;
+    }
+
+    &.navbar-backer-skew {
+        -ms-transform: skewX(-20deg); /* IE 9 */
+        -webkit-transform: skewX(-20deg); /* Safari */
+        transform: skewX(-20deg);
     }
 }
