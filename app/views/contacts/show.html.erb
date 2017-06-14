@@ -62,6 +62,8 @@
                             <%= @contact.role %>
                             <%= ' | ' if @contact.role.present? and @contact.company.present? %>
                             <%= @contact.company %>
+                            <%= ' | ' if @contact.company.present? and @contact.company_details.present? %>
+                            <%= @contact.company_details %>
                         </p>
 
                         <% if @contact.email.present? and @contact.secondary_email.present? %>
@@ -126,18 +128,25 @@
                         <% end %>
                         <!-- closing phone logic -->
 
-                        <% if @contact.linkedin.present? or @contact.facebook.present? %>
-                            <p>
-                                <a href="<%= @contact.linkedin %>" target="_blank">
-                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
-                                </a>
-                                <%= ' ' if @contact.linkedin.present? and @contact.facebook.present? %>
-                                <a href="<%= @contact.facebook %>" target="_blank">
-                                    <i class="fa fa-facebook" aria-hidden="true"></i>
-                                </a>
-                            </p>
+                        <% if @contact.linkedin.present? %>
+                            <a href="<%= @contact.linkedin %>" target="_blank">
+                                <span class="fa-stack" data-toggle="tooltip" data-placement="bottom" title="LinkedIn: <%= @contact.linkedin %>">
+                                    <i class="fa fa-circle fa-stack-2x orange-text" aria-hidden="true"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x white-text" aria-hidden="true"></i>
+                                </span>
+                            </a>
+                        <% end %>
+                        <%= ' ' if @contact.linkedin.present? and @contact.facebook.present? %>
+                        <% if @contact.facebook.present? %>
+                            <a href="<%= @contact.facebook %>" target="_blank">
+                                <span class="fa-stack" data-toggle="tooltip" data-placement="bottom" title="Facebook: <%= @contact.facebook %>">
+                                    <i class="fa fa-circle fa-stack-2x orange-text" aria-hidden="true"></i>
+                                    <i class="fa fa-facebook fa-stack-1x white-text" aria-hidden="true"></i>
+                                </span>
+                            </a>
                         <% end %>
                         <!-- closing social media logic -->
+
                     </div>
                     <!-- Close info card block  -->
                     <div class="card-block header">
