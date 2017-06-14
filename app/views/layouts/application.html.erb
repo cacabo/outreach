@@ -34,11 +34,19 @@
                 $('#alerts').slideDown(250).delay(1250).slideUp(250);
             });
 
-            $(document).ready(function() {
-                $backer = $('.navbar-backer');
+            function resizeBacker() {
+                var $backer = $('.navbar-backer');
                 $backer.height($('.navbar').outerHeight());
                 $backer.width('112px');
                 $('.navbar-backer-skew').width('132px');
+            }
+
+            $(document).ready(function() {
+                resizeBacker();
+            });
+
+            $(window).resize(function() {
+                resizeBacker();
             });
         </script>
     </body>
