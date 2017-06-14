@@ -9,10 +9,10 @@
                     <div class="card-block header <%= 'gray' if @contact.uninterested %>">
                         <h2 class="inline"><%= @contact.name %>
                             <% if @contact.long_term %>
-                            <span class="fa-stack small-icons" data-toggle="tooltip" data-placement="right" title="Long-term Mentor">
-                                <i class="fa fa-certificate orange-text fa-stack-2x" aria-hidden="true"></i>
-                                <i class="fa fa-check white-text fa-stack-1x" aria-hidden="true"></i>
-                            </span>
+                                <span class="fa-stack small-icons" data-toggle="tooltip" data-placement="right" title="Long-term Mentor">
+                                    <i class="fa fa-certificate orange-text fa-stack-2x" aria-hidden="true"></i>
+                                    <i class="fa fa-check white-text fa-stack-1x" aria-hidden="true"></i>
+                                </span>
                             <% end %>
                         </h2>
 
@@ -20,27 +20,34 @@
                             <i class="fa fa-chevron-down cursor gray-text" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                                 <% if @contact.uninterested.nil? or not @contact.uninterested %>
-                                <%= bootstrap_form_for @contact do |f| %>
-                                <%= f.hidden_field :uninterested, value: true %>
-                                <%= f.submit "Mark as uninterested", class: "dropdown-item cursor orange-text-hover" %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :uninterested, value: true %>
+                                        <%= f.submit "Mark as uninterested", class: "dropdown-item cursor orange-text-hover" %>
+                                    <% end %>
+                                    <!-- close uninterested form -->
+                                <% else %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :uninterested, value: false %>
+                                        <%= f.submit "Mark as interested", class: "dropdown-item cursor orange-text-hover" %>
+                                    <% end %>
+                                    <!-- close interested form -->
                                 <% end %>
-                            <% else %>
-                                <%= bootstrap_form_for @contact do |f| %>
-                                <%= f.hidden_field :uninterested, value: false %>
-                                <%= f.submit "Mark as interested", class: "dropdown-item cursor orange-text-hover" %>
-                                <% end %>
-                                <% end %>
+                                <!-- close interested logic -->
                                 <% if @contact.long_term.nil? or not @contact.long_term %>
-                                <%= bootstrap_form_for @contact do |f| %>
-                                <%= f.hidden_field :long_term, value: true %>
-                                <%= f.submit "Mark as long-term", class: "dropdown-item cursor orange-text-hover" %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :long_term, value: true %>
+                                        <%= f.submit "Mark as long-term", class: "dropdown-item cursor orange-text-hover" %>
+                                    <% end %>
+                                    <!-- close long term form -->
+                                <% else %>
+                                    <%= bootstrap_form_for @contact do |f| %>
+                                        <%= f.hidden_field :long_term, value: false %>
+                                        <%= f.submit "Unmark as long term", class: "dropdown-item cursor orange-text-hover" %>
+                                    <% end %>
+                                    <!-- close short term form -->
                                 <% end %>
-                            <% else %>
-                                <%= bootstrap_form_for @contact do |f| %>
-                                <%= f.hidden_field :long_term, value: false %>
-                                <%= f.submit "Unmark as long term", class: "dropdown-item cursor orange-text-hover" %>
-                                <% end %>
-                                <% end %>
+                                <!-- close long term logic -->
+
                                 <%= link_to 'Edit contact', edit_contact_path(@contact), class: "dropdown-item" %>
                                 <div class="dropdown-divider"></div>
                                 <%= link_to 'Delete contact', contact_path, method: :delete, data: { confirm: 'Permanently delete user?' }, class: "dropdown-item" %>
@@ -53,72 +60,101 @@
                         </p>
                         <p>
                             <%= @contact.role %>
-                            <% if @contact.role.present? and @contact.company.present? %>
-                            |
-                            <% end %>
+                            <%= ' | ' if @contact.role.present? and @contact.company.present? %>
                             <%= @contact.company %>
                         </p>
-                        <% if @contact.email.present? %>
-                        <p>
-                            <a href="mailto:<%=@contact.email%>">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <%= @contact.email %>
-                            </a>
-                        </p>
+
+                        <% if @contact.email.present? and @contact.secondary_email.present? %>
+                            <p>
+                                <a href="mailto:<%=@contact.email%>">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <%= @contact.email %>
+                                </a>
+                                <br>
+                                <a href="mailto:<%=@contact.secondary_email%>">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <%= @contact.secondary_email %>
+                                </a>
+                            </p>
+                        <% elsif @contact.email.present? %>
+                            <p>
+                                <a href="mailto:<%=@contact.email%>">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <%= @contact.email %>
+                                </a>
+                            </p>
+                        <% elsif @contact.secondary_email.present? %>
+                            <p>
+                                <a href="mailto:<%=@contact.secondary_email%>">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <%= @contact.secondary_email %>
+                                </a>
+                            </p>
                         <% end %>
-                        <% if @contact.secondary_email.present? %>
-                        <p>
-                            <a href="mailto:<%=@contact.secondary_email%>">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                <%= @contact.secondary_email %>
-                            </a>
-                        </p>
+                        <!-- closing email logic -->
+
+                        <% if @contact.cell.present? and @contact.work.present? %>
+                            <p>
+                                Cell:
+                                <a href="tel:<%=@contact.cell%>">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <%= @contact.cell %>
+                                </a>
+                                <br>
+                                Work:
+                                <a href="tel:<%=@contact.work%>">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <%= @contact.work %>
+                                </a>
+                            </p>
+                        <% elsif @contact.cell.present? %>
+                            <p>
+                                Cell:
+                                <a href="tel:<%=@contact.cell%>">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <%= @contact.cell %>
+                                </a>
+                            </p>
+                        <% elsif @contact.work.present? %>
+                            <p>
+                                Work:
+                                <a href="tel:<%=@contact.work%>">
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <%= @contact.work %>
+                                </a>
+                            </p>
                         <% end %>
-                        <% if @contact.cell.present? %>
-                        <p>
-                            Cell:
-                            <a href="tel:<%=@contact.cell%>">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                <%= @contact.cell %>
-                            </a>
-                        </p>
+                        <!-- closing phone logic -->
+
+                        <% if @contact.linkedin.present? or @contact.facebook.present? %>
+                            <p>
+                                <a href="<%= @contact.linkedin %>" target="_blank">
+                                    <i class="fa fa-linkedin" aria-hidden="true"></i>
+                                </a>
+                                <%= ' ' if @contact.linkedin.present? and @contact.facebook.present? %>
+                                <a href="<%= @contact.facebook %>" target="_blank">
+                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                </a>
+                            </p>
                         <% end %>
-                        <% if @contact.work.present? %>
-                        <p>
-                            Work:
-                            <a href="tel:<%=@contact.work%>">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                <%= @contact.work %>
-                            </a>
-                        </p>
-                        <% end %>
-                        <% if @contact.linkedin.present? %>
-                        <p>
-                            <a href="<%= @contact.linkedin %>" target="_blank">
-                                <i class="fa fa-linkedin" aria-hidden="true"></i>
-                            </a>
-                        </p>
-                        <% end %>
-                        <% if @contact.facebook.present? %>
-                        <p>
-                            <a href="<%= @contact.facebook %>" target="_blank">
-                                <i class="fa fa-facebook" aria-hidden="true"></i>
-                            </a>
-                        </p>
-                        <% end %>
+                        <!-- closing social media logic -->
                     </div>
+                    <!-- Close info card block  -->
                     <div class="card-block header">
                         <h4 class="center">Interaction over Time</h4>
                         <% outreach_sum = 0 %>
                         <% response_sum = 0 %>
-                        <%= area_chart [ { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) }, { name: "Outreaches", data:
-                        @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge) } ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
+                        <%= area_chart [
+                            { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) },
+                            { name: "Outreaches", data: @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge) } ],
+                            xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366']
+                        %>
                     </div>
                     <!-- closing card block -->
                     <% if @contact.notes.present? %>
-                    <div class="card-block">
-                        <p class="gray-text"><%= @contact.notes %></p>
-                    </div>
+                        <div class="card-block">
+                            <p class="gray-text"><%= @contact.notes %></p>
+                        </div>
                     <% end %>
                 </div>
                 <!-- closing card -->
@@ -126,53 +162,43 @@
             <!-- closing col -->
 
             <% if @contact.reaches.present? %>
-            <div class="col-12 col-lg-6">
-                <div class="card card-rect shade-hover">
-                    <div class="card-block header">
-                        <h2>Contact History</h2>
-                    </div>
-                    <div class="card-block">
-                        <div class="timeline">
-                            <div class="cap"></div>
-                            <div class="space"></div>
-                            <p class="date">6/17/17</p>
-                            <div class="marker"></div>
-                            <i class="fa fa-times-circle fa-lg delete" aria-hidden="true"></i>
-                            <div class="timeline-block">
-                                <h4>Some stuff</h4>
-                                <p>That I did</p>
-                            </div>
-                            <p class="date">8/31/17</p>
-                            <div class="marker"></div>
-                            <i class="fa fa-times-circle fa-lg delete" aria-hidden="true"></i>
-                            <div class="timeline-block">
-                                <h4>Some stuff</h4>
-                                <p>That I did</p>
-                            </div>
-                            <div class="half-space"></div>
-                            <div class="cap"></div>
+                <div class="col-12 col-lg-6">
+                    <div class="card card-rect shade-hover">
+                        <div class="card-block header">
+                            <h2>Contact History</h2>
                         </div>
+                        <div class="card-block">
+                            <div class="timeline">
+                                <div class="cap"></div>
+                                <div class="space"></div>
+
+                                <% @history.each do |reach| %>
+                                    <p class="date small">
+                                        <%= reach.time.strftime("%m/%d/%Y") %>
+                                    </p>
+                                    <div class="marker <%= 'response' if reach.response %>"></div>
+                                    <%= link_to contact_reach_path(@contact, reach), method: :delete do %>
+                                        <i class="fa fa-times-circle fa-lg delete" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Delete reach"></i>
+                                    <% end %>
+                                    <div class="timeline-block">
+                                        <p class="notes">
+                                            <%= reach.notes %>
+                                        </p>
+                                    </div>
+                                <% end %>
+
+                                <div class="half-space"></div>
+                                <div class="cap"></div>
+                            </div>
+                            <!-- closing timeline -->
+                        </div>
+                        <!-- closing card-block -->
                     </div>
-                    <!-- <% @history.each do |reach| %>
-                    <div class="reach <%= 'response' if reach.response %>">
-                        <p class="date">
-                            <%= reach.time.to_date.to_formatted_s(:long_ordinal) %>
-                        </p>
-                        <p class="notes">
-                            <%= reach.notes %>
-                        </p>
-                        <% if current_user %>
-                        <%= link_to contact_reach_path(@contact, reach), method: :delete do %>
-                        <i class="fa fa-times-circle float-right delete" aria-hidden="true"></i>
-                        <% end %>
-                        <% end %>
-                    </div>
-                    <% end %> -->
+                    <!-- closing card -->
                 </div>
-                <!-- closing card -->
-            </div>
-            <!-- closing col -->
+                <!-- closing col -->
             <% end %>
+            <!-- closing checking for reaches -->
         </div>
         <!-- closing row -->
     </div>
@@ -193,14 +219,14 @@
                 </div>
                 <div class="modal-body">
                     <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
-                    <%= f.date_select :time, label: "Date" %>
-                    <%= f.form_group :response do %>
-                    <%= f.check_box :response %>
-                    <% end %>
-                    <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
-                    <div class="buttons">
-                        <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
-                    </div>
+                        <%= f.date_select :time, label: "Date" %>
+                        <%= f.form_group :response do %>
+                            <%= f.check_box :response %>
+                        <% end %>
+                        <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
+                        <div class="buttons">
+                            <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
+                        </div>
                     <% end %>
                 </div>
             </div>

@@ -189,7 +189,7 @@ button:visited {
     text-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.3);
 
     &:hover {
-        text-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.5);
+        text-shadow: 0 0.75rem 0.75rem rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -524,7 +524,7 @@ ul.icons {
 }
 
 .timeline {
-    $offset: 112px;
+    $offset: 116px;
     $width: 2px;
 
     border-left: $width solid $orange;
@@ -544,6 +544,7 @@ ul.icons {
         position: absolute;
         text-align: right;
         width: 100%;
+        padding-top: 2px;
         padding-right: 36px;
         -ms-transform: translateX(-100%);
         -webkit-transform: translateX(-100%);
@@ -558,9 +559,9 @@ ul.icons {
         background: white;
         border: $width solid $orange;
         position: absolute;
-        -ms-transform: translateX(calc(-9px - ($width/2)));
-        -webkit-transform: translateX(-11px);
-        transform: translateX(-11px);
+        -ms-transform: translateX(-10px);
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
         -webkit-transition: all 0.2s ease;
         transition: all 0.2s ease;
 
