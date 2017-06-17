@@ -5,7 +5,9 @@ class ContactsController < ApplicationController
 
     def index
         # Determine contacts
-        if (current_user and params[:long_term])
+        if params[:search]
+            @contacts = Contact.where('name LIKE ?', "%#{params[:search]}%")
+        elsif (current_user and params[:long_term])
             # For long term mentors specifically
             @contacts = current_user.contacts.where(:long_term)
         elsif (current_user)
