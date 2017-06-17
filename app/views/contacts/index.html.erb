@@ -4,14 +4,14 @@
     <div class="space"></div>
     <div class="container">
         <div class="row">
-            <div class="col-6 push-3">
+            <div class="col-10 push-1 col-md-6 push-md-3">
                 <%= bootstrap_form_tag url: contacts_path, method: 'get' do |f| %>
                 <div class="row">
-                    <div class="col-9">
-                        <%= f.text_field :search, hide_label: true, value: params[:search] %>
-                    </div>
-                    <div class="col-3">
-                        <%= f.submit 'Search', class: 'btn btn-outline-orange full-width', name: nil %>
+                    <div class="input-group">
+                        <input class="form-control form-control-lg no-border-right" id="search" name="search" type="text" placeholder="Search..." value="<%= params[:search] %>">
+                        <%= button_tag(type: "submit", class: "input-group-addon btn btn-outline-orange", name: nil) do %>
+                            <i class="fa fa-search"></i>
+                        <% end %>
                     </div>
                 </div>
                 <% end %>
@@ -77,7 +77,7 @@
                 <div class="col-12 col-lg-6 offset-lg-3">
                     <div class="contact-list white shade-hover">
                         <div class="contact card-block header">
-                            <h3>Contacts</h3>
+                            <h3>Contacts under '<%= params[:search] %>'</h3>
                         </div>
 
                         <% @contacts.each do |contact| %>

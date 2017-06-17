@@ -727,3 +727,24 @@ ul.icons {
         background: $transparent-orange-25;
     }
 }
+
+.input-group-addon.btn-outline-orange {
+    border-left: 1px solid $orange !important;
+    background: white;
+
+    &:hover {
+        background: $orange;
+    }
+}
+
+.no-border-right {
+    border-right: 0px solid transparent !important;
+}
+
+.input-group {
+    z-index: 0 !important;
+
+    .form-control {
+        z-index: 0 !important;
+    }
+}
