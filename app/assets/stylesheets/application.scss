@@ -164,6 +164,12 @@ button:visited {
     vertical-align: top;
 }
 
+.buttons-left {
+    float: left;
+    text-align: left;
+    margin: 0.25rem 0.5rem 0.25rem 0;
+}
+
 .line {
     width: 100%;
     margin: 2.5vh 0;
@@ -437,7 +443,8 @@ p.date {
 }
 
 .form-wrapper {
-    min-height: 90vh;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .help-block {

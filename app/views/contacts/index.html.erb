@@ -216,7 +216,7 @@
                     </div>
 
                     <% @mentors.each do |contact| %>
-                    <div class="contact">
+                    <div class="contact <%= 'gray' if contact.uninterested %>">
                         <!-- header -->
                         <div class="row">
                             <div class="col-12">

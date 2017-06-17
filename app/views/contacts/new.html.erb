@@ -1,12 +1,31 @@
-<div class="space"></div>
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
-            <h1>New contact</h1>
-            <div class="line"></div>
-            <%= render 'form' %>
+<div class="light-gray">
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 push-md-2 col-lg-6 push-lg-3">
+                <div class="card card-rect shade-hover">
+                    <div class="card-block header">
+                        <h2>New contact</h2>
+                    </div>
+                    <div class="card-block">
+                        <%= render 'form' %>
+                    </div>
+                    <div class="card-block">
+                        <%= link_to contacts_path do %>
+                            <button class="btn btn-sm btn-outline-orange"><i class="fa fa-chevron-left"></i> Back to all contacts</button>
+                        <% end %>
+                    </div>
+                </div>
+                <!-- closing card -->
+            </div>
+            <!-- closing column -->
         </div>
+        <!-- closing row -->
     </div>
+    <!-- closing container -->
+    <div class="space"></div>
+    <div class="space"></div>
 </div>
-<div class="space"></div>
-<div class="space"></div>
+<!-- closing light-gray -->
