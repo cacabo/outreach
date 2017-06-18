@@ -2,7 +2,7 @@
     <%= bootstrap_form_for @contact do |f| %>
 
         <div id="general-information">
-            <%= f.text_field :name %>
+            <%= f.text_field :name, autofocus: true %>
             <%= f.text_field :company %>
             <%= f.text_field :company_details %>
             <%= f.text_field :role %>
