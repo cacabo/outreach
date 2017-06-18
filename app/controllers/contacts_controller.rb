@@ -42,7 +42,7 @@ class ContactsController < ApplicationController
 
         if @contact.save
             flash[:success] = "Contact successfully created."
-            redirect_to contacts_path
+            redirect_to @contact
         else
             flash.now[:alert] = "Failed to add contact. Please check the form."
             render :new

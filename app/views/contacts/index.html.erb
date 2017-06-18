@@ -11,6 +11,7 @@
             <div class="card-block header">
                 <h2>Overview</h2>
             </div>
+            <!-- closing card header -->
             <div class="card-block">
                 <h4>
                     <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Contacts">
@@ -40,6 +41,7 @@
                         <% contact_sum = 0 %>
                         <%= area_chart @contacts.order("DATE(created_at)").group("DATE(created_at)").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (contact_sum += y)} }.reduce({}, :merge), xtitle: "Date", ytitle: "Number of Contacts", colors: ['#ffa366'] %>
                     </div>
+                    <!-- closing first graph -->
                     <div class="col-12 col-lg-6">
                         <h4 class="center">Interaction over Time</h4>
                         <% outreach_sum = 0 %>
@@ -47,14 +49,20 @@
                         <%= area_chart [ { name: "Responses", data: @responses.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (response_sum += y)} }.reduce({}, :merge) }, { name: "Outreaches", data:
                         @reaches.order("time").group("time").count.to_a.sort{|x,y| x[0] <=> y[0]}.map { |x,y| { x => (outreach_sum += y)} }.reduce({}, :merge) } ], xtitle: "Date", ytitle: "Reaches made", colors: ['#cc5200', '#ffa366'] %>
                     </div>
+                    <!-- closing second graph -->
                 </div>
+                <!-- closing row for graphs -->
             </div>
+            <!-- closing overview card block -->
         </div>
+        <!-- closing overview card -->
         <% end %>
+        <!-- close unless params[:search] -->
 
         <!-- space between contacts and overview -->
         <div class="space"></div>
 
+        <!-- if this is a search, display contacts in the middle of the screen -->
         <% if params[:search] %>
             <div class="row">
                 <div class="col-12 col-lg-6 offset-lg-3">
@@ -62,6 +70,7 @@
                         <div class="contact card-block header">
                             <h3>Contacts under '<%= params[:search] %>'</h3>
                         </div>
+                        <!-- close contacts header -->
 
                         <% @contacts.each do |contact| %>
                         <div class="contact <%= 'gray' if contact.uninterested %>">
@@ -116,7 +125,9 @@
                                     <h4 class="inline"><%= contact.name %></h4>
                                     <% end %>
                                 </div>
+                                <!-- closing column -->
                             </div>
+                            <!-- closing row -->
                             <p class="marg-bot-0">
                                 <%= contact.company %>
                                 <% if contact.company.present? and contact.role.present? %>
@@ -127,11 +138,15 @@
                         </div>
                         <!-- closing contact -->
                         <% end %>
+                        <!-- closing loop for contacts -->
                     </div>
                     <!-- closing contact list -->
                 </div>
+                <!-- closing surrounding col -->
             </div>
+            <!-- closing surrounding row -->
         <% end %>
+        <!-- closing logic checking if this is a search -->
 
         <!-- listing contacts -->
         <div class="row">
