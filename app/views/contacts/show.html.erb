@@ -234,7 +234,7 @@
                 </div>
                 <div class="modal-body">
                     <%= bootstrap_form_for [@contact, @contact.reaches.new] do |f| %>
-                        <%= f.date_select :time, label: "Date" %>
+                        <%= f.date_select :time, label: "Date", id: 'date' %>
                         <%= f.form_group :response do %>
                             <%= f.check_box :response %>
                         <% end %>
@@ -258,8 +258,42 @@
 </div>
 <!-- closing light-gray -->
 
+<div class="modal fade" id="search-modal" tabindex="-1" role="search" aria-labelledby="Search" aria-hidden="true">
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <%= bootstrap_form_tag url: contacts_path, method: 'get' do |f| %>
+                <div class="input-group">
+                    <input class="form-control form-control-lg no-border-right" id="search" name="search" type="text" placeholder="Search...">
+                    <%= button_tag(type: "submit", class: "input-group-addon btn btn-outline-orange", name: nil) do %>
+                        <i class="fa fa-search"></i>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<div class="bottom-right-above cursor" data-toggle="modal" data-target="#search-modal" aria-hidden="true">
+    <span class="fa-stack fa-small">
+        <i class="fa fa-circle fa-stack-2x orange-text icon-shade"></i>
+        <i class="fa fa-search fa-stack-1x white-text"></i>
+    </span>
+</div>
+
 <script type="text/javascript">
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+<script type="text/javascript">
+    $('#search-modal').on('shown.bs.modal', function () {
+        $('#search').focus()
+    })
+
+    $('#reachForm').on('shown.bs.modal', function () {
+        $('#date').focus()
     })
 </script>
