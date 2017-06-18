@@ -222,6 +222,8 @@
 
     <!-- New reach model -->
     <div class="modal fade" id="reachForm" tabindex="-1" role="dialog" aria-labelledby="New reach form" aria-hidden="true">
+        <div class="space"></div>
+        <div class="space"></div>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -236,7 +238,7 @@
                         <%= f.form_group :response do %>
                             <%= f.check_box :response %>
                         <% end %>
-                        <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true %>
+                        <%= f.text_area :notes, placeholder: 'Add a comment...', hide_label: true, required: true %>
                         <div class="buttons">
                             <%= f.submit "Create outreach", class: 'btn btn-outline-orange' %>
                         </div>
@@ -247,11 +249,11 @@
     </div>
     <!-- closing modal -->
 
-    <div class="bottom-right" aria-hidden="true">
-        <i class="fa fa-circle white-text icon-shade scale-down" aria-hidden="true"></i>
-    </div>
-    <div class="cursor bottom-right" title="Add a new outreach">
-        <i class="fa fa-plus-circle orange-text" data-toggle="modal" data-target="#reachForm" aria-hidden="true"></i>
+    <div class="cursor bottom-right" title="Add a new outreach" data-toggle="modal" data-target="#reachForm" aria-hidden="true">
+        <span class="fa-stack fa-small">
+            <i class="fa fa-circle fa-stack-2x orange-text icon-shade"></i>
+            <i class="fa fa-plus fa-stack-1x white-text"></i>
+        </span>
     </div>
 </div>
 <!-- closing light-gray -->

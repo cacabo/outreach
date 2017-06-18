@@ -205,6 +205,10 @@ button:visited {
     }
 }
 
+.fa-small {
+    font-size: 50%;
+}
+
 .circle {
     border-radius: 50%;
 }
@@ -240,6 +244,10 @@ button:visited {
 
 .marg-top-50 {
     margin-top: 5vh !important;
+}
+
+.marg-bot-50 {
+    margin-bottom: 5vh !important;
 }
 
 .marg-bot-25 {
@@ -423,11 +431,10 @@ p.date {
     border: 0 transparent;
 }
 
-.bottom-right {
+.bottom-right-above, .bottom-right {
     z-index: 3;
     position: fixed;
     right: 1rem;
-    bottom: 1rem;
     padding: 0;
     font-size: 3rem;
     transition: all 0.2s ease;
@@ -440,6 +447,14 @@ p.date {
         /* Safari */
         transform: scale(1.05, 1.05);
     }
+}
+
+.bottom-right {
+    bottom: 1rem;
+}
+
+.bottom-right-above {
+    bottom: 4.5rem;
 }
 
 .form-wrapper {

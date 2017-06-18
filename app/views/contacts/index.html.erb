@@ -2,23 +2,6 @@
     <div class="space"></div>
     <div class="space"></div>
     <div class="space"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-10 push-1 col-md-6 push-md-3">
-                <%= bootstrap_form_tag url: contacts_path, method: 'get' do |f| %>
-                <div class="row">
-                    <div class="input-group">
-                        <input class="form-control form-control-lg no-border-right" id="search" name="search" type="text" placeholder="Search..." value="<%= params[:search] %>">
-                        <%= button_tag(type: "submit", class: "input-group-addon btn btn-outline-orange", name: nil) do %>
-                            <i class="fa fa-search"></i>
-                        <% end %>
-                    </div>
-                </div>
-                <% end %>
-            </div>
-            <div class="space"></div>
-        </div>
-    </div>
 
     <div class="container">
 
@@ -402,20 +385,50 @@
     <div class="space"></div>
     <div class="space"></div>
 
-    <a href="<%=new_contact_path%>" class="bottom-right" aria-hidden="true">
-        <i class="fa fa-circle white-text icon-shade scale-down" aria-hidden="true"></i>
+    <a href="<%= new_contact_path %>" class="bottom-right cursor">
+        <span class="fa-stack fa-small">
+            <i class="fa fa-circle fa-stack-2x orange-text icon-shade"></i>
+            <i class="fa fa-plus fa-stack-1x white-text"></i>
+        </span>
     </a>
-    <a href="<%=new_contact_path%>" class="bottom-right" title="Add a new contact">
-        <i class="fa fa-plus-circle orange-text" aria-hidden="true"></i>
-    </a>
+
+    <div class="bottom-right-above cursor" data-toggle="modal" data-target="#search-modal" aria-hidden="true">
+        <span class="fa-stack fa-small">
+            <i class="fa fa-circle fa-stack-2x orange-text icon-shade"></i>
+            <i class="fa fa-search fa-stack-1x white-text"></i>
+        </span>
+    </div>
 
     <div class="space"></div>
     <div class="space"></div>
 </div>
 <!-- closing light-gray -->
 
+<div class="modal fade" id="search-modal" tabindex="-1" role="search" aria-labelledby="Search" aria-hidden="true">
+    <div class="space"></div>
+    <div class="space"></div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <%= bootstrap_form_tag url: contacts_path, method: 'get' do |f| %>
+                <div class="input-group">
+                    <input class="form-control form-control-lg no-border-right" id="search" name="search" type="text" placeholder="Search...">
+                    <%= button_tag(type: "submit", class: "input-group-addon btn btn-outline-orange", name: nil) do %>
+                        <i class="fa fa-search"></i>
+                    <% end %>
+                </div>
+            <% end %>
+        </div>
+    </div>
+</div>
+
 <script type="text/javascript">
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
+    })
+</script>
+
+<script type="text/javascript">
+    $('#search-modal').on('shown.bs.modal', function () {
+        $('#search').focus()
     })
 </script>
