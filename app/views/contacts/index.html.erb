@@ -26,11 +26,14 @@
                     <% end %>
                     <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Outreaches">
                         <i class="fa fa-share"></i>
-                        <%= @reaches.count %></span>
+                        <%= @reaches.count %>
+                    </span>
                     <span class="badge badge-default" data-toggle="tooltip" data-placement="bottom" title="Responses">
                         <i class="fa fa-reply"></i>
-                        <%= @responses.count %></span>
+                        <%= @responses.count %>
+                    </span>
                 </h4>
+                <!-- closing badges -->
 
                 <div class="half-space"></div>
 
@@ -148,16 +151,14 @@
         <% end %>
         <!-- closing logic checking if this is a search -->
 
-        <!-- listing contacts -->
+        <!-- listing contacts: this row surrounds all contacts -->
         <div class="row">
 
+            <!--
+                short term contact logic
+            -->
+            <% if @short_term and @short_term.present? %>
             <div class="col-12 col-lg-6">
-
-                <!--
-                    short term contact logic
-                -->
-
-                <% if @short_term and @short_term.present? %>
                 <div class="contact-list white shade-hover">
                     <div class="contact card-block header">
                         <h3>Short-term Contacts</h3>
@@ -236,6 +237,8 @@
 
             </div>
             <!-- closing col around short term contacts -->
+            <% end %>
+            <!-- closing logic for short term -->
 
             <% if @mentors and @mentors.present? %>
             <!-- listing mentors -->
@@ -409,6 +412,8 @@
         <!-- closing row surrounding all contacts -->
 
         <div class="space"></div>
+        <div class="space"></div>
+
         <div class="buttons">
             <%= link_to new_contact_path do %>
             <button class="btn btn-outline-orange">
