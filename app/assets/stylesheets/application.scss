@@ -124,6 +124,10 @@ button:visited {
     height: 40vh;
 }
 
+.h-60 {
+    height: 60vh;
+}
+
 .inline {
     display: inline-block;
 }
@@ -763,4 +767,19 @@ ul.icons {
     .form-control {
         z-index: 0 !important;
     }
+}
+
+.shift-up-20 {
+    -webkit-transform: translateY(-20vh);
+    transform: translateY(-20vh);
+}
+
+.shift-up-10 {
+    -webkit-transform: translateY(-10vh);
+    transform: translateY(-10vh);
+}
+
+.shift-left-10 {
+    -webkit-transform: translateX(-10vw);
+    transform: translateX(-10vw);
 }
