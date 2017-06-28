@@ -576,6 +576,14 @@ ul.icons {
     font-size: 40%;
 }
 
+.most-recent {
+  color: gray;
+  position: absolute;
+  right: 2rem;
+  text-align: right;
+  width: 100%;
+}
+
 .timeline {
     $offset: 116px;
     $width: 2px;
