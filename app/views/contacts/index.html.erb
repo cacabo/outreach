@@ -135,7 +135,7 @@
                                     <%= contact.reaches.order('created_at DESC').first.time.strftime("%m/%d/%Y") %>
                                   </p>
                                 <% end %>
-                                <p class="marg-bot-0">
+                                <p class="marg-bot-0 contact-pad-right">
                                     <%= contact.company %>
                                     <% if contact.company.present? and contact.role.present? %>
                                         |
@@ -230,7 +230,7 @@
                                     <%= contact.reaches.order('created_at DESC').first.time.strftime("%m/%d/%Y") %>
                                   </p>
                                 <% end %>
-                                <p class="marg-bot-0">
+                                <p class="marg-bot-0 contact-pad-right">
                                     <%= contact.company %>
                                     <% if contact.company.present? and contact.role.present? %>
                                         |
@@ -322,7 +322,7 @@
                                     <%= contact.reaches.order('created_at DESC').first.time.strftime("%m/%d/%Y") %>
                                   </p>
                                 <% end %>
-                                <p class="marg-bot-0">
+                                <p class="marg-bot-0 contact-pad-right">
                                     <%= contact.company %>
                                     <% if contact.company.present? and contact.role.present? %>
                                         |
